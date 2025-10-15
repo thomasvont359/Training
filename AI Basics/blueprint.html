@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .slide-container { width: 1280px; min-height: 720px; background: #000000; font-family: 'Inter', sans-serif; color: #FFFFFF; position: relative; overflow: hidden; }
+      .accent-line { position: absolute; background: #FFFFFF; }
+      .blueprint-card { border-left: 3px solid #FFFFFF; position: relative; }
+      .step-number { position: absolute; top: -12px; left: -12px; width: 24px; height: 24px; background: #FFFFFF; color: #000000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container flex flex-col px-20 py-16">
+      <div class="accent-line" style="width: 120px; height: 2px; top: 140px; right: 80px;"></div>
+      <div class="mb-10">
+        <div class="w-16 h-1 bg-white mb-6"></div>
+        <h1 class="text-5xl font-bold tracking-tight mb-8">Prompting Blueprint</h1>
+        <div class="text-xl font-light text-gray-300 tracking-wide">
+          <p>Role + Goal + Context + Constraints + Output = Perfect Prompt</p>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col justify-center">
+        <div class="grid grid-cols-5 gap-5 mt-6">
+          <div class="blueprint-card pl-5 pt-8 pb-6 relative">
+            <div class="step-number">1</div>
+            <h2 class="text-lg font-bold mb-3 uppercase tracking-wider">Role</h2>
+            <p class="text-sm font-light leading-relaxed text-gray-300">Name the exact expert persona and authority; include domain, seniority, perspective.</p>
+          </div>
+          <div class="blueprint-card pl-5 pt-8 pb-6 relative">
+            <div class="step-number">2</div>
+            <h2 class="text-lg font-bold mb-3 uppercase tracking-wider">Goal</h2>
+            <p class="text-sm font-light leading-relaxed text-gray-300">Define single measurable outcome; include verb, audience, success criteria.</p>
+          </div>
+          <div class="blueprint-card pl-5 pt-8 pb-6 relative">
+            <div class="step-number">3</div>
+            <h2 class="text-lg font-bold mb-3 uppercase tracking-wider">Context</h2>
+            <p class="text-sm font-light leading-relaxed text-gray-300">Provide only essential background, sources, and constraints; avoid noise.</p>
+          </div>
+          <div class="blueprint-card pl-5 pt-8 pb-6 relative">
+            <div class="step-number">4</div>
+            <h2 class="text-lg font-bold mb-3 uppercase tracking-wider">Constraints</h2>
+            <p class="text-sm font-light leading-relaxed text-gray-300">List rules: tone, length, structure, do/don’t, legal/privacy boundaries.</p>
+          </div>
+          <div class="blueprint-card pl-5 pt-8 pb-6 relative">
+            <div class="step-number">5</div>
+            <h2 class="text-lg font-bold mb-3 uppercase tracking-wider">Output</h2>
+            <p class="text-sm font-light leading-relaxed text-gray-300">Specify exact format: headings, tables, bullet points, or checklist.</p>
+          </div>
+        </div>
+        <div class="mt-12 pt-6 border-t border-gray-800">
+          <p class="text-base font-light text-gray-400 italic">This structure eliminates vagueness. Think like a brief: who, what, with what materials, under what rules, in what final form.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
+
+
+
+

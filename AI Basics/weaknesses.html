@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #000000;
+        font-family: 'Inter', sans-serif;
+        color: #FFFFFF;
+        position: relative;
+        overflow: hidden;
+      }
+      .accent-line { position: absolute; background: #FFFFFF; }
+      .warning-box { background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 100%); border-left: 4px solid #F59E0B; }
+      .risk-card { border-left: 3px solid #888888; }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container flex flex-col px-20 py-16">
+      <div class="accent-line" style="width: 100px; height: 2px; top: 140px; left: 80px;"></div>
+      <div class="accent-line" style="width: 2px; height: 100px; bottom: 240px; right: 80px;"></div>
+      <div class="mb-12">
+        <div class="w-16 h-1 bg-white mb-6"></div>
+        <h1 class="text-5xl font-bold tracking-tight">Where AI Is Risky/Weak</h1>
+      </div>
+      <div class="flex-1 grid grid-cols-2 gap-x-16 gap-y-6 mb-8">
+        <div class="risk-card pl-6 py-4">
+          <h3 class="text-2xl font-bold mb-2 text-gray-300">Factual Accuracy</h3>
+          <p class="text-lg font-light text-gray-400 leading-relaxed">Cites non‑existent papers; invents policy details</p>
+        </div>
+        <div class="risk-card pl-6 py-4">
+          <h3 class="text-2xl font-bold mb-2 text-gray-300">Numbers & Dates</h3>
+          <p class="text-lg font-light text-gray-400 leading-relaxed">Misstates totals; off‑by‑one dates and versions</p>
+        </div>
+        <div class="risk-card pl-6 py-4">
+          <h3 class="text-2xl font-bold mb-2 text-gray-300">Novel Edge Cases</h3>
+          <p class="text-lg font-light text-gray-400 leading-relaxed">Generic steps when APIs return unusual errors</p>
+        </div>
+        <div class="risk-card pl-6 py-4">
+          <h3 class="text-2xl font-bold mb-2 text-gray-300">High-Stakes Decisions</h3>
+          <p class="text-lg font-light text-gray-400 leading-relaxed">Suggests legal phrasing or financial moves unsafely</p>
+        </div>
+      </div>
+      <div class="warning-box pl-8 pr-8 py-6 mt-6">
+        <div class="flex items-center justify-center mb-3">
+          <span class="text-3xl mr-3 text-amber-400" style="color:#F59E0B">⚠</span>
+          <h2 class="text-2xl font-bold tracking-wide text-amber-400" style="color:#F59E0B">DRAFT, THEN VERIFY</h2>
+        </div>
+        <p class="text-base font-light text-gray-300 leading-relaxed text-center">Outputs can be fluent but wrong. Treat results as drafts. Verify names, numbers, dates, and any claim that would embarrass you if false.</p>
+      </div>
+    </div>
+  </body>
+  </html>
+
+
+
+

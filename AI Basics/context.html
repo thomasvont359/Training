@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .slide-container { width: 1280px; min-height: 720px; background: #000000; font-family: 'Inter', sans-serif; color: #FFFFFF; position: relative; overflow: hidden; }
+      .accent-line { position: absolute; background: #FFFFFF; }
+      .context-card { border-left: 3px solid #FFFFFF; background: rgba(255, 255, 255, 0.03); }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container flex flex-col px-20 py-14">
+      <div class="accent-line" style="width: 100px; height: 2px; top: 120px; right: 80px;"></div>
+      <div class="mb-12 text-center">
+        <h1 class="text-5xl font-extrabold tracking-tight">Context Is King</h1>
+        <p class="text-lg font-light text-gray-300 mt-4">What to Include</p>
+      </div>
+      <div class="flex-1 grid grid-cols-2 gap-6">
+        <div class="flex items-start" style="min-height: 168px;">
+          <div class="pr-5 pt-0 text-white">
+            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+              <path d="M4 4h12v14H4z"></path>
+              <path d="M8 7h8"></path>
+              <path d="M8 11h8"></path>
+              <path d="M8 15h6"></path>
+            </svg>
+          </div>
+          <div class="context-card pl-6 pr-5 py-5 w-full" style="border-color: rgba(255,255,255,0.22)">
+            <h3 class="text-xl font-bold mb-2">Relevant Snippets Only</h3>
+            <p class="text-sm font-light text-gray-300 leading-relaxed opacity-80">Paste only the lines that drive the task; cut intros and fluff. Highlight terms, metrics, or quotes the answer must preserve verbatim.</p>
+          </div>
+        </div>
+        <div class="flex items-start" style="min-height: 168px;">
+          <div class="pr-5 pt-0 text-white">
+            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+              <path d="M4 12h16"></path>
+              <path d="M8 6h12"></path>
+              <path d="M4 18h12"></path>
+            </svg>
+          </div>
+          <div class="context-card pl-6 pr-5 py-5 w-full" style="border-color: rgba(255,255,255,0.22)">
+            <h3 class="text-xl font-bold mb-2">Specify Details</h3>
+            <p class="text-sm font-light text-gray-300 leading-relaxed opacity-80">State audience, tone, region, deadlines, and acceptable terminology. Include reading level, taboos or terms to avoid, and one short example of preferred phrasing.</p>
+          </div>
+        </div>
+        <div class="flex items-start" style="min-height: 168px;">
+          <div class="pr-5 pt-0 text-white">
+            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+              <path d="M4 5h12a4 4 0 0 1 4 4v10H8a4 4 0 0 1-4-4V5z"></path>
+              <path d="M8 5v10"></path>
+            </svg>
+          </div>
+          <div class="context-card pl-6 pr-5 py-5 w-full" style="border-color: rgba(255,255,255,0.22)">
+            <h3 class="text-xl font-bold mb-2">Source-of-Truth</h3>
+            <p class="text-sm font-light text-gray-300 leading-relaxed opacity-80">Link the canonical doc, policy, or dataset. Quote exact passages to rely on, include version/date, and note which source wins if references conflict.</p>
+          </div>
+        </div>
+        <div class="flex items-start" style="min-height: 168px;">
+          <div class="pr-5 pt-0 text-white">
+            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+              <path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4"></path>
+              <path d="M12 17h.01"></path>
+            </svg>
+          </div>
+          <div class="context-card pl-6 pr-5 py-5 w-full" style="border-color: rgba(255,255,255,0.22)">
+            <h3 class="text-xl font-bold mb-2">Instruct to Ask</h3>
+            <p class="text-sm font-light text-gray-300 leading-relaxed opacity-80">If inputs are missing or ambiguous, ask targeted questions before proceeding. Offer default options and explain how outputs change based on each answer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 pt-5">
+        <p class="text-sm font-light text-gray-300 italic">More context ≠ better. Provide only what matters. Ask clarifying questions when critical info is missing.</p>
+      </div>
+    </div>
+  </body>
+  </html>
+
+
+
+

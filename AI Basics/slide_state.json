@@ -1,0 +1,135 @@
+{
+  "project_info": {
+    "title": "AI at Work: Prompting, Oversight & Security",
+    "created": 1760452146.910408,
+    "last_updated": 1760456967.0255327,
+    "total_slides": 21
+  },
+  "slides": {
+    "title": "edited",
+    "scope": "edited",
+    "strengths": "edited",
+    "weaknesses": "edited",
+    "blueprint": "edited",
+    "examples": "edited",
+    "context": "edited",
+    "output_structure": "edited",
+    "patterns": "edited",
+    "oversight": "edited",
+    "evaluation": "edited",
+    "security": "edited",
+    "cheatsheet": "edited",
+    "threats": "edited",
+    "safe_patterns": "edited",
+    "governance": "edited",
+    "exercise": "edited",
+    "decision_tree": "edited",
+    "templates": "edited",
+    "policies": "edited",
+    "glossary": "edited"
+  },
+  "outline": [
+    {
+      "id": "title",
+      "title": "AI at Work: Prompting, Oversight & Security",
+      "summary": "Title slide introducing the session on practical, safe, and reliable use of AI at work, covering prompting, oversight, and security essentials.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "strengths",
+      "title": "Where AI Is Good (and Why)",
+      "summary": "Highlights AI's strengths in drafting, summarizing, extracting information, brainstorming, and handling repetitive tasks with clear rules.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "weaknesses",
+      "title": "Where AI Is Risky/Weak (and Why)",
+      "summary": "Identifies AI's limitations including hallucinations, inaccuracy with numbers and dates, and challenges with novel edge cases and high-stakes decisions.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "blueprint",
+      "title": "Prompting Blueprint (Core Pattern)",
+      "summary": "Presents the five-part prompting structure: Role, Goal, Inputs, Constraints, and Output format for effective AI interactions.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "examples",
+      "title": "Bad → Better Prompt Examples",
+      "summary": "Demonstrates the transformation from vague prompts to specific, structured prompts with clear roles, constraints, and output formats.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "context",
+      "title": "Context Is King",
+      "summary": "What to include: relevant snippets, audience specs, source links, and ask-when-missing instructions.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "cheatsheet",
+      "title": "Cheat Sheet (Starters)",
+      "summary": "Ready-to-use prompt starters for common tasks.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "security",
+      "title": "Security & Privacy Basics",
+      "summary": "Covers essential security practices including data minimization, avoiding sensitive information, and following approved data handling rules.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "eu_essentials",
+      "title": "EU Essentials",
+      "summary": "Core EU‑specific considerations for AI work (privacy, safety, transparency).",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "governance",
+      "title": "Governance-in-Practice (Lightweight)",
+      "summary": "Covers practical governance including when to escalate, maintaining oversight logs, and following team policies.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "decision_tree",
+      "title": "Decision Tree: Use AI or Not?",
+      "summary": "Presents decision criteria for when to use AI, when to proceed with caution, and when to avoid AI usage entirely.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "exercise",
+      "title": "Hands-On Exercise (10 Minutes)",
+      "summary": "Provides a practical exercise to turn a messy customer email into a clear response using the prompting blueprint and evaluation checklist.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "recap",
+      "title": "Recap",
+      "summary": "Key takeaways and next steps.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "q_and_a",
+      "title": "Q&A",
+      "summary": "Any questions?",
+      "image_plan": "",
+      "slide_template_key": ""
+    }
+  ]
+}
+
+
+
+

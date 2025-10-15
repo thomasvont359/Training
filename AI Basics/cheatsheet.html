@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .slide-container { width: 1280px; min-height: 720px; background: #000000; font-family: 'Inter', sans-serif; color: #FFFFFF; position: relative; overflow: hidden; }
+      .accent-line { position: absolute; background: #FFFFFF; }
+      .prompt-card { background: rgba(255, 255, 255, 0.03); }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container flex flex-col px-20 py-12">
+      <div class="accent-line" style="width: 120px; height: 2px; top: 100px; right: 80px;"></div>
+      <div class="mb-8">
+        <h1 class="text-5xl font-bold tracking-tight">Cheat Sheet</h1>
+        <p class="text-lg font-light text-gray-300 mt-2">Prompt Starters</p>
+      </div>
+      <div class="flex-1 grid grid-cols-2 gap-x-12 gap-y-4">
+        <div class="prompt-card pr-4 py-4">
+          <div class="flex items-start">
+            <div class="pr-3 pt-1 text-white">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <path d="M3 17h12"></path>
+                <path d="M11 3l2 2-8 8-2 2 0-2 8-8z"></path>
+              </svg>
+            </div>
+            <div class="border-l-2 border-white pl-6 w-full">
+              <p class="text-xs font-bold text-gray-400 mb-2 tracking-wider uppercase">Write</p>
+              <p class="text-sm font-light text-gray-300 leading-relaxed">As a &lt;role&gt;, draft &lt;deliverable&gt; for &lt;audience&gt; with &lt;criteria&gt;, ≤&lt;length&gt;. Output as &lt;format&gt;.</p>
+            </div>
+          </div>
+        </div>
+        <div class="prompt-card pr-4 py-4">
+          <div class="flex items-start">
+            <div class="pr-3 pt-1 text-white">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <path d="M4 6h16"></path>
+                <path d="M4 12h16"></path>
+                <path d="M4 18h10"></path>
+              </svg>
+            </div>
+            <div class="border-l-2 border-white pl-6 w-full">
+              <p class="text-xs font-bold text-gray-400 mb-2 tracking-wider uppercase">Summarize</p>
+              <p class="text-sm font-light text-gray-300 leading-relaxed">Summarize for execs (≤120 words) with 3 key risks and 2 decisions; use bullets.</p>
+            </div>
+          </div>
+        </div>
+        <div class="prompt-card pr-4 py-4">
+          <div class="flex items-start">
+            <div class="pr-3 pt-1 text-white">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <path d="M4 4h16v16H4z"></path>
+                <path d="M8 8h8"></path>
+                <path d="M8 12h8"></path>
+                <path d="M8 16h6"></path>
+              </svg>
+            </div>
+            <div class="border-l-2 border-white pl-6 w-full">
+              <p class="text-xs font-bold text-gray-400 mb-2 tracking-wider uppercase">Extract</p>
+              <p class="text-sm font-light text-gray-300 leading-relaxed">From the text, return a table with columns A, B, C; only exact matches.</p>
+            </div>
+          </div>
+        </div>
+        <div class="prompt-card pr-4 py-4">
+          <div class="flex items-start">
+            <div class="pr-3 pt-1 text-white">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <path d="M5 5h14v14H5z"></path>
+                <path d="M8 8h8"></path>
+                <path d="M8 12h8"></path>
+              </svg>
+            </div>
+            <div class="border-l-2 border-white pl-6 w-full">
+              <p class="text-xs font-bold text-gray-400 mb-2 tracking-wider uppercase">Plan</p>
+              <p class="text-sm font-light text-gray-300 leading-relaxed">Create a 5‑step plan with owners/dates/risks; finish with open questions.</p>
+            </div>
+          </div>
+        </div>
+        <div class="prompt-card pr-4 py-4">
+          <div class="flex items-start">
+            <div class="pr-3 pt-1 text-white">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <path d="M6 18l6-6 6 6"></path>
+                <path d="M6 6h12v6H6z"></path>
+              </svg>
+            </div>
+            <div class="border-l-2 border-white pl-6 w-full">
+              <p class="text-xs font-bold text-gray-400 mb-2 tracking-wider uppercase">Critique</p>
+              <p class="text-sm font-light text-gray-300 leading-relaxed">Critique the draft against explicit criteria; list fixes by section before revising.</p>
+            </div>
+          </div>
+        </div>
+        <div class="prompt-card pr-4 py-4">
+          <div class="flex items-start">
+            <div class="pr-3 pt-1 text-white">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <path d="M4 6h10"></path>
+                <path d="M4 12h14"></path>
+                <path d="M4 18h12"></path>
+              </svg>
+            </div>
+            <div class="border-l-2 border-white pl-6 w-full">
+              <p class="text-xs font-bold text-gray-400 mb-2 tracking-wider uppercase">Tone‑shift</p>
+              <p class="text-sm font-light text-gray-300 leading-relaxed">Rewrite in a respectful, confident tone for a frustrated customer; keep to 120–150 words.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 pt-5 border-t border-gray-800">
+        <p class="text-sm font-light text-gray-400 italic">These cover most daily use cases. Copy into your notes/macros.</p>
+      </div>
+    </div>
+  </body>
+  </html>
+
+
+
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; }
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #000000;
+        font-family: 'Inter', sans-serif;
+        color: #FFFFFF;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container flex flex-col px-20 py-14">
+      <h1 class="text-5xl font-bold mb-12">Templates & Snippets (Appendix)</h1>
+      
+      <div class="flex-1 flex flex-col justify-center space-y-6">
+        <div class="border-l-3 border-white pl-6 py-4">
+          <h3 class="text-lg font-bold mb-3 uppercase tracking-wider">Safe Prompt Header</h3>
+          <p class="text-base font-light text-gray-300 leading-relaxed">You are assisting with &lt;task&gt; for &lt;audience&gt;. Use only the context below. If info is missing, ask or say you can't proceed. Output as &lt;format&gt;. List uncertainties at the end.</p>
+        </div>
+        
+        <div class="border-l-3 border-white pl-6 py-4">
+          <h3 class="text-lg font-bold mb-3 uppercase tracking-wider">Verification Add-On</h3>
+          <p class="text-base font-light text-gray-300 leading-relaxed">Before finalizing: 1) highlight claims needing sources, 2) show supporting excerpt/URL for each, 3) flag any gaps.</p>
+        </div>
+        
+        <div class="border-l-3 border-white pl-6 py-4">
+          <h3 class="text-lg font-bold mb-3 uppercase tracking-wider">Oversight Log Fields</h3>
+          <p class="text-base font-light text-gray-300 leading-relaxed">Prompt (final), Inputs (docs/snippets), Decisions taken, Issues/uncertainties, Verification notes, Final sign-off</p>
+        </div>
+      </div>
+      
+      <div class="mt-6 pt-6 border-t border-gray-800">
+        <p class="text-sm font-light text-gray-400 italic">Paste these into your team wiki or macro tool.</p>
+      </div>
+    </div>
+  </body>
+  </html>
+
+

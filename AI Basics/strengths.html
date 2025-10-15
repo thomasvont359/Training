@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #000000;
+        font-family: 'Inter', sans-serif;
+        color: #FFFFFF;
+        position: relative;
+        overflow: hidden;
+      }
+      .accent-line {
+        position: absolute;
+        background: #FFFFFF;
+      }
+      .strength-card {
+        border-left: 3px solid #FFFFFF;
+        transition: all 0.3s ease;
+      }
+      .check-chip {
+        width: 22px;
+        height: 22px;
+        border-radius: 9999px;
+        background: rgba(34, 197, 94, 0.12);
+        border: 1px solid #22c55e;
+        color: #22c55e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container flex flex-col px-20 py-16">
+      <div class="accent-line" style="width: 80px; height: 2px; top: 140px; right: 80px;"></div>
+      <div class="mb-14">
+        <div class="w-16 h-1 bg-white mb-6"></div>
+        <h1 class="text-5xl font-bold tracking-tight">Where AI Is Good</h1>
+      </div>
+      <div class="flex-1 grid grid-cols-2 gap-x-16 gap-y-8">
+        <div class="flex items-start">
+          <div class="pr-3 pt-1 text-green-400">
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+              <path d="M2 10 L7 15 L18 4"></path>
+            </svg>
+          </div>
+          <div class="strength-card pl-6 py-4 w-full">
+            <h3 class="text-2xl font-bold mb-2">Drafting & Rewriting</h3>
+            <p class="text-lg font-light text-gray-300 leading-relaxed">Emails, documents, responses</p>
+            <p class="text-sm text-gray-400 mt-1">E.g., rewrite support email</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="pr-3 pt-1 text-green-400">
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+              <path d="M2 10 L7 15 L18 4"></path>
+            </svg>
+          </div>
+          <div class="strength-card pl-6 py-4 w-full">
+            <h3 class="text-2xl font-bold mb-2">Summarizing & Distilling</h3>
+            <p class="text-lg font-light text-gray-300 leading-relaxed">Long text into concise insights</p>
+            <p class="text-sm text-gray-400 mt-1">E.g., TL;DR in 120 words</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="pr-3 pt-1 text-green-400">
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+              <path d="M2 10 L7 15 L18 4"></path>
+            </svg>
+          </div>
+          <div class="strength-card pl-6 py-4 w-full">
+            <h3 class="text-2xl font-bold mb-2">Extracting & Structuring</h3>
+            <p class="text-lg font-light text-gray-300 leading-relaxed">Information into tables and lists</p>
+            <p class="text-sm text-gray-400 mt-1">E.g., extract fields A/B/C</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="pr-3 pt-1 text-green-400">
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+              <path d="M2 10 L7 15 L18 4"></path>
+            </svg>
+          </div>
+          <div class="strength-card pl-6 py-4 w-full">
+            <h3 class="text-2xl font-bold mb-2">Brainstorming</h3>
+            <p class="text-lg font-light text-gray-300 leading-relaxed">Generating variations and ideas</p>
+            <p class="text-sm text-gray-400 mt-1">E.g., 10 subject line ideas</p>
+          </div>
+        </div>
+        <div class="flex items-start col-span-2">
+          <div class="pr-3 pt-1 text-green-400">
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+              <path d="M2 10 L7 15 L18 4"></path>
+            </svg>
+          </div>
+          <div class="strength-card pl-6 py-4 w-full">
+            <h3 class="text-2xl font-bold mb-2">Repetitive Tasks</h3>
+            <p class="text-lg font-light text-gray-300 leading-relaxed">Handling clear rules and patterns efficiently</p>
+            <p class="text-sm text-gray-400 mt-1">E.g., weekly invoice classification</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 pt-0">
+        <p class="text-lg font-light text-gray-300 italic">AI excels when tasks are patternable, examples are provided, and success can be expressed as structure or criteria.</p>
+      </div>
+    </div>
+  </body>
+  </html>
+
+
+
+

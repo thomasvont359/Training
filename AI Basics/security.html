@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .slide-container { width: 1280px; min-height: 720px; background: #000000; font-family: 'Inter', sans-serif; color: #FFFFFF; position: relative; overflow: hidden; }
+      .accent-line { position: absolute; background: #FFFFFF; }
+      .security-card { background: rgba(255, 255, 255, 0.03); }
+      .emphasis-box { background: linear-gradient(90deg, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 100%); border-left: 4px solid #FFFFFF; }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container flex flex-col px-20 py-14">
+      <div class="accent-line" style="width: 120px; height: 2px; top: 120px; right: 80px;"></div>
+      <div class="mb-10">
+        <h1 class="text-5xl font-bold tracking-tight">Security & Privacy Basics</h1>
+        <p class="text-lg font-light text-gray-300 mt-2">Practical habits to prevent leaks and bad assumptions</p>
+      </div>
+      <div class="flex-1 grid grid-cols-2 gap-x-16 gap-y-6">
+        <div class="security-card pr-5 py-5">
+          <div class="flex items-start">
+            <div class="pr-3 pt-1 text-white">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <path d="M7 4h10v4H7z"></path>
+                <path d="M5 8h14v12H5z"></path>
+                <path d="M9 12l6 6"></path>
+                <path d="M15 12l-6 6"></path>
+              </svg>
+            </div>
+            <div class="border-l-2 border-white pl-6 w-full">
+              <h3 class="text-xl font-bold mb-2">Don't Paste</h3>
+              <p class="text-sm font-light text-gray-300 leading-relaxed">Never include secrets, customer PII, unreleased financials, or tokens. Use redacted placeholders.</p>
+            </div>
+          </div>
+        </div>
+        <div class="security-card pr-5 py-5">
+          <div class="flex items-start">
+            <div class="pr-3 pt-1 text-white">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <path d="M4 18h16"></path>
+                <path d="M6 14h12"></path>
+                <path d="M8 10h8"></path>
+                <path d="M10 6h4"></path>
+              </svg>
+            </div>
+            <div class="border-l-2 border-white pl-6 w-full">
+              <h3 class="text-xl font-bold mb-2">Minimize Sensitive Data</h3>
+              <p class="text-sm font-light text-gray-300 leading-relaxed">Share the least sensitive data that still works. Prefer synthetic samples and partial fields.</p>
+            </div>
+          </div>
+        </div>
+        <div class="security-card pr-5 py-5">
+          <div class="flex items-start">
+            <div class="pr-3 pt-1 text-white">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <circle cx="12" cy="12" r="7"></circle>
+                <path d="M12 9v6"></path>
+                <path d="M9 12h6"></path>
+              </svg>
+            </div>
+            <div class="border-l-2 border-white pl-6 w-full">
+              <h3 class="text-xl font-bold mb-2">Assume Logging</h3>
+              <p class="text-sm font-light text-gray-300 leading-relaxed">Treat prompts and outputs as reviewable. Avoid data you wouldn’t email broadly.</p>
+            </div>
+          </div>
+        </div>
+        <div class="security-card pr-5 py-5">
+          <div class="flex items-start">
+            <div class="pr-3 pt-1 text-white">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"></path>
+                <path d="M9 12h6"></path>
+              </svg>
+            </div>
+            <div class="border-l-2 border-white pl-6 w-full">
+              <h3 class="text-xl font-bold mb-2">Use Approved Tools</h3>
+              <p class="text-sm font-light text-gray-300 leading-relaxed">Follow team policies for storage, sharing, and export. Confirm scopes and revoke unused access.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="emphasis-box pl-8 pr-8 py-6 mt-8">
+        <div class="flex items-center mb-3">
+          <span class="text-2xl mr-3"></span>
+          <h2 class="text-xl font-bold tracking-wide">DATA MINIMIZATION</h2>
+        </div>
+        <p class="text-base font-light text-gray-300 leading-relaxed pl-10">Use the least sensitive data that still achieves the task. When in doubt, escalate.</p>
+      </div>
+    </div>
+  </body>
+  </html>
+
+
+
+

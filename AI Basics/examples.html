@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .slide-container { width: 1280px; min-height: 720px; background: #000000; font-family: 'Inter', sans-serif; color: #FFFFFF; position: relative; overflow: hidden; }
+      .accent-line { position: absolute; background: #FFFFFF; }
+      .bad-example { background: rgba(239, 68, 68, 0.08); border-left: 3px solid #ef4444; }
+      .better-example { background: rgba(34, 197, 94, 0.10); border-left: 3px solid #22c55e; }
+      .arrow { color: #888888; font-size: 24px; }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container flex flex-col px-20 py-14">
+      <div class="accent-line" style="width: 100px; height: 2px; top: 120px; left: 80px;"></div>
+      <div class="accent-line" style="width: 2px; height: 100px; bottom: 60px; right: 80px;"></div>
+      <div class="mb-12">
+        <h1 class="text-5xl font-bold tracking-tight">Bad → Better Prompt Examples</h1>
+      </div>
+      <div class="flex-1 flex flex-col justify-center space-y-6">
+        <div class="grid grid-cols-12 gap-4 items-center">
+          <div class="col-span-3 bad-example pl-4 py-3">
+            <p class="text-xs font-semibold text-red-400 mb-2 uppercase tracking-wider">Bad</p>
+            <p class="text-base font-light text-red-300">"Write a plan."</p>
+          </div>
+          <div class="col-span-1 flex justify-center"><span class="arrow">→</span></div>
+          <div class="col-span-8 better-example pl-5 py-3">
+            <p class="text-xs font-semibold text-green-400 mb-2 uppercase tracking-wider">Better</p>
+            <p class="text-base font-light leading-relaxed text-green-300">"As a project manager, create a 5-step rollout plan for migrating X by Nov 30. Use bullets with owners/dates/risks, ≤150 words."</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4 items-center">
+          <div class="col-span-3 bad-example pl-4 py-3">
+            <p class="text-xs font-semibold text-red-400 mb-2 uppercase tracking-wider">Bad</p>
+            <p class="text-base font-light text-red-300">"Summarize this."</p>
+          </div>
+          <div class="col-span-1 flex justify-center"><span class="arrow">→</span></div>
+          <div class="col-span-8 better-example pl-5 py-3">
+            <p class="text-xs font-semibold text-green-400 mb-2 uppercase tracking-wider">Better</p>
+            <p class="text-base font-light leading-relaxed text-green-300">"Summarize for execs (≤120 words), include 3 key risks and 2 decisions needed. Use bullets."</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4 items-center">
+          <div class="col-span-3 bad-example pl-4 py-3">
+            <p class="text-xs font-semibold text-red-400 mb-2 uppercase tracking-wider">Bad</p>
+            <p class="text-base font-light text-red-300">"Improve this email."</p>
+          </div>
+          <div class="col-span-1 flex justify-center"><span class="arrow">→</span></div>
+          <div class="col-span-8 better-example pl-5 py-3">
+            <p class="text-xs font-semibold text-green-400 mb-2 uppercase tracking-wider">Better</p>
+            <p class="text-base font-light leading-relaxed text-green-300">"Rewrite for a frustrated customer; keep apologetic but confident tone; 100–150 words; include next steps and a 48-hour timeline."</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 pt-5 border-t border-gray-800">
+        <p class="text-sm font-light text-gray-400 italic">Note the specificity: role, audience, constraints, and output format.</p>
+      </div>
+    </div>
+  </body>
+  </html>
+
+
+
+
