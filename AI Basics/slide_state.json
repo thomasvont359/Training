@@ -3,7 +3,7 @@
     "title": "AI at Work: Prompting, Oversight & Security",
     "created": 1760452146.910408,
     "last_updated": 1760456967.0255327,
-    "total_slides": 21
+    "total_slides": 22
   },
   "slides": {
     "title": "edited",
@@ -33,6 +33,13 @@
       "id": "title",
       "title": "AI at Work: Prompting, Oversight & Security",
       "summary": "Title slide introducing the session on practical, safe, and reliable use of AI at work, covering prompting, oversight, and security essentials.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "what_is_ai",
+      "title": "What is AI?",
+      "summary": "Working definition, common types, and strengths vs. limits.",
       "image_plan": "",
       "slide_template_key": ""
     },

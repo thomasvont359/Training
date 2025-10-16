@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #000000;
+        font-family: 'Inter', sans-serif;
+        color: #FFFFFF;
+        position: relative;
+        overflow: hidden;
+      }
+      .accent-line { position: absolute; background: #FFFFFF; }
+      .accent-box { position: absolute; border: 2px solid #FFFFFF; }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container px-24 py-20">
+      <!-- Accents -->
+      <div class="accent-line" style="width: 4px; height: 220px; top: 96px; left: 80px;"></div>
+      <div class="accent-line" style="width: 140px; height: 2px; top: 360px; left: 120px;"></div>
+      <div class="accent-box" style="width: 80px; height: 80px; bottom: 120px; right: 120px;"></div>
+
+      <div class="grid grid-cols-12 gap-10">
+        <div class="col-span-8">
+          <div class="w-20 h-1 bg-white mb-10"></div>
+          <h1 class="text-6xl font-extrabold tracking-tight mb-6">What is AI?</h1>
+          <p class="text-xl text-gray-300 mb-8 max-w-3xl">A practical definition and how to think about it at work.</p>
+
+          <ul class="space-y-6">
+            <li class="flex items-start">
+              <div class="mt-1 mr-4">
+                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"></path></svg>
+              </div>
+              <div class="border-l-4 border-white pl-6">
+                <div class="text-2xl font-semibold mb-1">Working definition</div>
+                <div class="text-lg text-gray-300">Software that learns patterns from data to make predictions, generate content, or take actions.</div>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <div class="mt-1 mr-4">
+                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><path d="M12 9v3"></path><path d="M12 12l3 2"></path></svg>
+              </div>
+              <div class="border-l-4 border-white pl-6">
+                <div class="text-2xl font-semibold mb-1">Common types</div>
+                <div class="text-lg text-gray-300">Predictive models (classification/regression), generative models (text, images), retrieval and tool‑use agents.</div>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <div class="mt-1 mr-4">
+                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"></path><path d="M3 17l5-5 4 4 7-7"></path></svg>
+              </div>
+              <div class="border-l-4 border-white pl-6">
+                <div class="text-2xl font-semibold mb-1">Strengths & limits</div>
+                <div class="text-lg text-gray-300">Excellent at patterned tasks and rapid drafting; needs oversight for facts, numbers, and novel edge cases.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-span-4 flex flex-col items-end">
+          <img src="../public/Logo1.png" alt="Logo" class="h-28 mb-8" />
+          <div class="text-right text-gray-400">
+            <div class="text-sm">AI Basics — Page 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
+
+
