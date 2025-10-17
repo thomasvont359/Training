@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .slide-container { width: 1280px; min-height: 720px; background: #000000; font-family: 'Inter', sans-serif; color: #FFFFFF; position: relative; overflow: hidden; }
+      .accent-line { position: absolute; background: #FFFFFF; }
+      .example-card { background: rgba(255,255,255,0.03); border-left: 3px solid rgba(255,255,255,0.2); }
+      .label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; opacity: 0.9; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container flex flex-col px-20 py-14">
+      <img src="../public/Logo2.png" alt="Logo" style="position:absolute; top:24px; right:24px; height:40px; opacity:0.9" />
+      <div class="accent-line" style="width: 110px; height: 2px; top: 120px; right: 80px;"></div>
+      <div class="mb-10">
+        <div class="w-16 h-1 bg-white mb-6"></div>
+        <h1 class="text-5xl font-bold tracking-tight">The Perfect Prompt</h1>
+        <p class="text-lg font-light text-gray-300 mt-2">A real‑world example with Role, Goal, Context, Constraints, and Output</p>
+      </div>
+      <div class="flex-1 grid grid-cols-2 gap-5">
+        <div class="example-card pl-5 pr-5 py-3">
+          <div class="label text-blue-400 mb-1">Role</div>
+          <p class="text-sm font-light text-blue-300">Act as the Senior Product Manager serving enterprise customers. You understand buyer needs, can weigh trade-offs, and are empowered to propose realistic dates.</p>
+        </div>
+        <div class="example-card pl-5 pr-5 py-3">
+          <div class="label text-green-400 mb-1">Goal</div>
+          <p class="text-sm font-light text-green-300">Write a short customer email that announces the deprecation of Feature X and guides customers to migrate to Y.</p>
+        </div>
+        <div class="example-card pl-5 pr-5 py-3">
+          <div class="label text-indigo-400 mb-1">Context</div>
+          <p class="text-sm font-light text-indigo-300">Feature X has ~8% usage and is expensive to run. Feature Y is GA and includes SSO and audit logs. A typical migration takes about 2 hours per tenant. Finance requires two weeks’ notice and SOC 2 audit logs.</p>
+        </div>
+        <div class="example-card pl-5 pr-5 py-3">
+          <div class="label text-yellow-400 mb-1">Constraints</div>
+          <ul class="list-disc list-inside text-sm font-light text-yellow-300">
+            <li>Sound respectful and confident.</li>
+            <li>Keep it under 120 words.</li>
+            <li>State the cutoff date, admin steps, and a support link.</li>
+            <li>Don’t mention or imply unreleased items.</li>
+          </ul>
+        </div>
+        <div class="example-card pl-5 pr-5 py-3 col-span-2">
+          <div class="label text-red-400 mb-1">Output</div>
+          <p class="text-sm font-light text-red-300">Return a ready-to-send customer email: a subject line, 2–3 short paragraphs, and a concise bullet list of next steps. End with a support contact.</p>
+        </div>
+      </div>
+      <div class="mt-6 pt-5 border-t border-gray-800">
+        <p class="text-sm font-light text-gray-400 italic">Tip: Keep each section explicit in your draft prompt, then remove labels if you prefer a cleaner final prompt.</p>
+      </div>
+    </div>
+  </body>
+  </html>
+
+

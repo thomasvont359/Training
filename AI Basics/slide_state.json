@@ -79,9 +79,23 @@
       "slide_template_key": ""
     },
     {
+      "id": "perfect_prompt",
+      "title": "The Perfect Prompt (Full Example)",
+      "summary": "A real-world prompt example with Role, Goal, Context, Constraints, and Output—ready to copy.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
       "id": "cheatsheet",
       "title": "Cheat Sheet (Starters)",
       "summary": "Ready-to-use prompt starters for common tasks.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "whats_wrong",
+      "title": "What’s Wrong?",
+      "summary": "Side-by-side weak vs strong prompt comparison with explanation.",
       "image_plan": "",
       "slide_template_key": ""
     },
@@ -99,13 +113,7 @@
       "image_plan": "",
       "slide_template_key": ""
     },
-    {
-      "id": "governance",
-      "title": "Governance-in-Practice (Lightweight)",
-      "summary": "Covers practical governance including when to escalate, maintaining oversight logs, and following team policies.",
-      "image_plan": "",
-      "slide_template_key": ""
-    },
+    
     {
       "id": "decision_tree",
       "title": "Decision Tree: Use AI or Not?",

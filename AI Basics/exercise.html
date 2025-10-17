@@ -11,48 +11,68 @@
   </head>
   <body>
     <div class="slide-container flex flex-col px-20 py-16">
-      <div class="mb-10">
-        <h1 class="text-5xl font-bold">Hands‑On Exercise</h1>
+      <img src="../public/Logo2.png" alt="Logo" style="position:absolute; top:24px; right:24px; height:40px; opacity:0.9" />
+      <div class="mb-4">
+        <h1 class="text-5xl font-bold">Hands-On Exercise</h1>
         <p class="text-lg font-light text-gray-300 mt-2">10 minutes</p>
       </div>
-      <div class="flex-1 flex flex-col justify-center">
-        <div class="mb-10 pr-5 py-4">
-          <div class="flex items-start">
-            <div class="pr-3 pt-1 text-white">
-              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><path d="M3 17h12"></path><path d="M11 3l2 2-8 8-2 2 0-2 8-8z"></path></svg>
-            </div>
-            <div class="border-l-2 border-white pl-6 w-full">
-              <h2 class="text-3xl font-bold mb-4">Task</h2>
-              <p class="text-2xl font-light text-gray-300">Turn a messy customer email into a clear response.</p>
+      <div class="flex-1 grid grid-cols-2 gap-6 items-start">
+        <!-- Left column: Task + Complaint -->
+        <div class="pr-6">
+          <div class="border-l-2 border-white pl-5">
+            <h2 class="text-2xl font-bold mb-2">Task</h2>
+            <p class="text-base font-light text-gray-300">Write the prompt that will make the AI draft a clear, empathetic reply to this customer complaint. You are not writing the email yourself, only the prompt that tells the AI what to produce.</p>
+          </div>
+          <div class="mt-8">
+            <div class="flex items-start">
+              <div class="pr-3 pt-1 text-red-400" style="color:#F87171">
+                <svg class="w-5 h-5 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color:#F87171">
+                  <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                  <path d="M3 7l9 6 9-6"></path>
+                </svg>
+              </div>
+              <div class="border-l-2 border-white pl-5 w-full">
+                <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase mb-2">Customer complaint</h3>
+                <div class="text-sm font-light text-gray-200 leading-relaxed whitespace-pre-line">From: Alex Johnson, Order #48321
+Subject: Late delivery & damaged box
+I finally got my order today, a week late, and the box was crushed. I needed this for a client demo and it’s useless now. I’m sick of chasing tracking updates. Either fix this today or refund me. This has been a waste of time.</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="space-y-6">
-          <h3 class="text-2xl font-semibold mb-6">Steps:</h3>
-          <div class="flex items-start space-x-6">
-            <div class="text-4xl font-bold text-gray-600 w-12">1</div>
-            <p class="text-xl font-light text-gray-300 leading-relaxed pt-2">Draft a prompt using the blueprint</p>
-          </div>
-          <div class="flex items-start space-x-6">
-            <div class="text-4xl font-bold text-gray-600 w-12">2</div>
-            <p class="text-xl font-light text-gray-300 leading-relaxed pt-2">Run once; apply the 4 checks</p>
-          </div>
-          <div class="flex items-start space-x-6">
-            <div class="text-4xl font-bold text-gray-600 w-12">3</div>
-            <p class="text-xl font-light text-gray-300 leading-relaxed pt-2">Add a critic pass with explicit criteria</p>
-          </div>
-          <div class="flex items-start space-x-6">
-            <div class="text-4xl font-bold text-gray-600 w-12">4</div>
-            <p class="text-xl font-light text-gray-300 leading-relaxed pt-2">Revise and finalize; add a 2-line oversight log</p>
+        <!-- Right column: Steps + Output spec -->
+        <div class="pl-2">
+          
+          <div class="mt-6">
+            <div class="flex items-start">
+              <div class="pr-3 pt-1 text-green-400" style="color:#34D399">
+                <svg class="w-5 h-5 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color:#34D399">
+                  <path d="M4 17l6-6"></path>
+                  <path d="M8 17h4v-4"></path>
+                  <rect x="12" y="4" width="8" height="6"></rect>
+                </svg>
+              </div>
+              <div class="border-l-2 border-white pl-5 w-full">
+                <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase mb-2">Ideal Prompt</h3>
+                <div class="text-sm font-light text-gray-200">
+                  Act as a senior support lead for customer communications.<br/>
+                  Your goal is to draft a clear, empathetic reply to Alex about the late delivery and damaged box.<br/>
+                  Here’s the context: Order #48321; one-week delay; crushed packaging; offer a free express reship or a full refund plus a small credit.<br/>
+                  Keep it under 160 words in plain English; acknowledge the issue and take ownership; present the two options and ask Alex to reply with his choice; include a signature.<br/>
+                  Produce a ready-to-send email to Alex that ends with "reply with your choice".
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="mt-8 pt-6 border-t border-gray-800">
-        <p class="text-base font-light text-gray-400 italic">Timebox to keep momentum. Encourage pairs to swap outputs and quickly review each other's drafts.</p>
+      <div class="mt-6 pt-4 border-t border-gray-800">
+        <p class="text-sm font-light text-gray-400">A great prompt yields a reply that is empathetic, specific, and actionable with two clear remedies and a short next step.</p>
       </div>
     </div>
   </body>
   </html>
+
 
 
 
