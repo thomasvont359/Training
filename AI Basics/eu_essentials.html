@@ -11,52 +11,84 @@
   </head>
   <body>
     <div class="slide-container flex flex-col px-20 py-16">
-      <div class="mb-10">
-        <h1 class="text-5xl font-bold">EU Essentials</h1>
-        <p class="text-lg font-light text-gray-300 mt-2">Core considerations for AI work in the EU</p>
+      <img src="../public/Logo2.png" alt="Logo" style="position:absolute; top:24px; right:24px; height:40px; opacity:0.9" />
+      <div class="mb-6 flex items-center gap-5">
+        <img src="../public/EUAI.png" alt="EU AI" style="height:72px; width:auto; mix-blend-mode:screen; image-rendering:auto; background:transparent; filter: drop-shadow(0 0 6px rgba(255,255,255,0.06));" />
+        <h1 class="text-4xl font-bold">EU AI Act</h1>
       </div>
-      <div class="flex-1 grid grid-cols-2 gap-6">
-        <div class="pr-5 py-5">
+      <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="pr-5 py-3">
           <div class="flex items-start">
-            <div class="pr-3 pt-1 text-white">
-              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><path d="M4 5h16v14H4z"></path><path d="M8 9h8"></path><path d="M8 13h6"></path></svg>
+            <div class="pr-3 pt-1 text-blue-400">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <rect x="4" y="4" width="12" height="16"></rect>
+                <path d="M8 8h6"></path>
+                <path d="M8 12h6"></path>
+                <path d="M8 16h5"></path>
+              </svg>
             </div>
-            <div class="border-l-2 border-white pl-6 w-full">
-              <h3 class="text-xl font-bold mb-2">Privacy (GDPR)</h3>
-              <p class="text-sm font-light text-gray-300">Process only necessary personal data; document lawful basis; honor data subject rights; prefer anonymization.</p>
+            <div class="border-l-2 border-white pl-5 w-full">
+              <h3 class="text-sm font-bold uppercase tracking-wider mb-1">What happened</h3>
+              <div class="text-sm font-light text-gray-300 space-y-1 leading-snug">
+                <div>EU created one rulebook for AI (in force since 2024).</div>
+                <div>Risk tiers: banned, high-risk, limited/minimal.</div>
+                <div>Goal: stop harmful uses and set safeguards for sensitive areas.</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="pr-5 py-5">
+        <div class="pr-5 py-3">
           <div class="flex items-start">
-            <div class="pr-3 pt-1 text-white">
-              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"></path></svg>
+            <div class="pr-3 pt-1 text-indigo-400">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <circle cx="12" cy="12" r="8"></circle>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
             </div>
-            <div class="border-l-2 border-white pl-6 w-full">
-              <h3 class="text-xl font-bold mb-2">AI Act Readiness</h3>
-              <p class="text-sm font-light text-gray-300">Know your system’s risk class; keep tech docs; ensure transparency, human oversight, and data governance.</p>
+            <div class="border-l-2 border-white pl-5 w-full">
+              <h3 class="text-sm font-bold uppercase tracking-wider mb-1">What’s happening now</h3>
+              <div class="text-sm font-light text-gray-300 space-y-1 leading-snug">
+                <div>Banned uses already illegal (e.g., social scoring; certain live biometric ID).</div>
+                <div>EU AI Office is active to oversee big model makers.</div>
+                <div>General-purpose model providers rolling out documentation, safety tests, copyright measures.</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="pr-5 py-5">
+        <div class="pr-5 py-3">
           <div class="flex items-start">
-            <div class="pr-3 pt-1 text-white">
-              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><path d="M6 6h12"></path><path d="M6 12h12"></path><path d="M6 18h12"></path></svg>
+            <div class="pr-3 pt-1 text-yellow-400">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <rect x="4" y="5" width="16" height="14" rx="2"></rect>
+                <path d="M8 3v4"></path>
+                <path d="M16 3v4"></path>
+                <path d="M8 12h4"></path>
+                <path d="M8 16h8"></path>
+              </svg>
             </div>
-            <div class="border-l-2 border-white pl-6 w-full">
-              <h3 class="text-xl font-bold mb-2">Security & Transfers</h3>
-              <p class="text-sm font-light text-gray-300">Use vetted vendors; apply SCCs/TIAs for non‑EU transfers; log access; least‑privilege keys and environments.</p>
+            <div class="border-l-2 border-white pl-5 w-full">
+              <h3 class="text-sm font-bold uppercase tracking-wider mb-1">What’s next</h3>
+              <div class="text-sm font-light text-gray-300 space-y-1 leading-snug">
+                <div>High-risk uses (hiring, credit, education, essential services) must pass safety checks, log activity, and keep human oversight.</div>
+                <div>More visible labels (deepfake notices, "AI-assisted" tags) and clearer explanations.</div>
+                <div>Regulators phase in audits/enforcement through 2026-27.</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="pr-5 py-5">
+        <div class="pr-5 py-3">
           <div class="flex items-start">
-            <div class="pr-3 pt-1 text-white">
-              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6"></path><path d="M12 16h.01"></path></svg>
+            <div class="pr-3 pt-1 text-green-400">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M9 12l2 2 4-4"></path>
+              </svg>
             </div>
-            <div class="border-l-2 border-white pl-6 w-full">
-              <h3 class="text-xl font-bold mb-2">Transparency</h3>
-              <p class="text-sm font-light text-gray-300">Label AI assistance, disclose sources/limits, and provide user‑friendly explanations for decisions.</p>
+            <div class="border-l-2 border-white pl-5 w-full">
+              <h3 class="text-sm font-bold uppercase tracking-wider mb-1">Bottom line</h3>
+              <div class="text-sm font-light text-gray-300 space-y-1 leading-snug">
+                <div>Harmful uses are shut down, powerful models are supervised, and high-stakes AI gets formal safety and oversight.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -64,6 +96,7 @@
     </div>
   </body>
   </html>
+
 
 
 

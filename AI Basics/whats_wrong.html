@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../public/Logo2.png?v=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .slide-container { width: 1280px; min-height: 720px; background: #000000; font-family: 'Inter', sans-serif; color: #FFFFFF; position: relative; overflow: hidden; }
+      .accent-line { position: absolute; background: #FFFFFF; }
+      .card { background: rgba(255,255,255,0.03); border-radius: 16px; position: relative; }
+      .side-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
+      .chip { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9CA3AF; }
+      .prompt-block { background: transparent; border: none; border-radius: 10px; padding: 0; line-height: 1.7; font-size: 16px; overflow: visible; font-family: inherit; }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container flex flex-col px-20 py-16">
+      <img src="../public/Logo2.png" alt="Logo" style="position:absolute; top:24px; right:24px; height:40px; opacity:0.9" />
+      <div class="mb-10">
+        <h1 class="text-5xl font-bold tracking-tight">What’s Wrong?</h1>
+        <p class="text-lg font-light text-gray-300 mt-2">Compare a vague prompt with a precise one.</p>
+      </div>
+      <div class="flex-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <div class="space-y-4">
+            <div class="card p-6">
+              <div class="side-bar" style="background: rgba(239,68,68,0.8)"></div>
+              <div class="chip mb-2" style="display:flex; align-items:center; gap:8px">
+                <svg class="w-4 h-4 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                  <path d="M6 6l12 12"></path>
+                  <path d="M18 6L6 18"></path>
+                </svg>
+                <span>Weak Prompt</span>
+              </div>
+              <div class="prompt-block">Write a product launch email.</div>
+            </div>
+            <div class="card p-6">
+              <div class="side-bar" style="background: rgba(255,255,255,0.85)"></div>
+              <h3 class="text-sm font-semibold text-gray-200 mb-2">Why the right one wins</h3>
+              <p class="text-sm font-light text-gray-400">The strong prompt names the role, audience, timing, and pricing; sets length and tone; includes three pitching contexts and a required link; and ends with a clear call to action - so you get a ready-to-send email instead of a generic draft.</p>
+            </div>
+          </div>
+          <div class="card p-6">
+            <div class="side-bar" style="background: rgba(16,185,129,0.8)"></div>
+            <div class="chip mb-2" style="display:flex; align-items:center; gap:8px">
+              <svg class="w-4 h-4 text-green-400" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                <path d="M2 10 L7 15 L18 4"></path>
+              </svg>
+              <span>Strong Prompt</span>
+            </div>
+            <div class="prompt-block">You're a senior product marketer. Draft a 200-word internal announcement email for our sales reps about the new "Insight Hub" analytics feature launching on 28 Oct. Explain what it does in one sentence, who it's for (mid-market accounts), when to pitch it (QBRs, renewal risk, expansion scouting), pricing (included in Pro+, $49 add-on for Standard), and include the one-pager link: /sales/insight-hub-onepager. Close with a clear call to action to book Friday's enablement session.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
+
+
