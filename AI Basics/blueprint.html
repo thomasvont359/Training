@@ -25,27 +25,27 @@
       </div>
       <div class="flex-1 flex flex-col justify-center">
         <div class="grid grid-cols-5 gap-5 mt-6">
-          <div class="blueprint-card pl-5 pt-8 pb-6 relative" style="border-left-color:#60A5FA">
+          <div class="blueprint-card pl-5 pt-8 pb-6 relative step" data-step="1" style="border-left-color:#60A5FA; opacity:0; transform: translateY(8px); transition: opacity 220ms ease, transform 220ms ease;">
             <div class="step-number" style="background:#60A5FA; color:#000">1</div>
             <h2 class="text-lg font-bold mb-3 uppercase tracking-wider text-blue-400">Role</h2>
             <p class="text-sm font-light leading-relaxed text-gray-300">Name the exact expert persona and authority; include domain, seniority, perspective.</p>
           </div>
-          <div class="blueprint-card pl-5 pt-8 pb-6 relative" style="border-left-color:#34D399">
+          <div class="blueprint-card pl-5 pt-8 pb-6 relative step" data-step="2" style="border-left-color:#34D399; opacity:0; transform: translateY(8px); transition: opacity 220ms ease, transform 220ms ease;">
             <div class="step-number" style="background:#34D399; color:#000">2</div>
             <h2 class="text-lg font-bold mb-3 uppercase tracking-wider text-green-400">Goal</h2>
             <p class="text-sm font-light leading-relaxed text-gray-300">Define single measurable outcome; include verb, audience, success criteria.</p>
           </div>
-          <div class="blueprint-card pl-5 pt-8 pb-6 relative" style="border-left-color:#818CF8">
+          <div class="blueprint-card pl-5 pt-8 pb-6 relative step" data-step="3" style="border-left-color:#818CF8; opacity:0; transform: translateY(8px); transition: opacity 220ms ease, transform 220ms ease;">
             <div class="step-number" style="background:#818CF8; color:#000">3</div>
             <h2 class="text-lg font-bold mb-3 uppercase tracking-wider text-indigo-400">Context</h2>
             <p class="text-sm font-light leading-relaxed text-gray-300">Provide only essential background, sources, and constraints; avoid noise.</p>
           </div>
-          <div class="blueprint-card pl-5 pt-8 pb-6 relative" style="border-left-color:#FBBF24">
+          <div class="blueprint-card pl-5 pt-8 pb-6 relative step" data-step="4" style="border-left-color:#FBBF24; opacity:0; transform: translateY(8px); transition: opacity 220ms ease, transform 220ms ease;">
             <div class="step-number" style="background:#FBBF24; color:#000">4</div>
             <h2 class="text-lg font-bold mb-3 uppercase tracking-wider text-yellow-400">Constraints</h2>
             <p class="text-sm font-light leading-relaxed text-gray-300">List rules: tone, length, structure, do/don’t, legal/privacy boundaries.</p>
           </div>
-          <div class="blueprint-card pl-5 pt-8 pb-6 relative" style="border-left-color:#F87171">
+          <div class="blueprint-card pl-5 pt-8 pb-6 relative step" data-step="5" style="border-left-color:#F87171; opacity:0; transform: translateY(8px); transition: opacity 220ms ease, transform 220ms ease;">
             <div class="step-number" style="background:#F87171; color:#000">5</div>
             <h2 class="text-lg font-bold mb-3 uppercase tracking-wider text-red-400">Output</h2>
             <p class="text-sm font-light leading-relaxed text-gray-300">Specify exact format: headings, tables, bullet points, or checklist.</p>
@@ -58,6 +58,36 @@
     </div>
   </body>
   </html>
+  <script>
+    // Step-reveal for blueprint: Role -> Goal -> Context -> Constraints -> Output
+    (function() {
+      let current = 0;
+      const steps = Array.from(document.querySelectorAll('.step'))
+        .sort((a, b) => (parseInt(a.getAttribute('data-step'))||0) - (parseInt(b.getAttribute('data-step'))||0));
+      function revealNext() {
+        if (current >= steps.length) return false;
+        const el = steps[current++];
+        if (el) {
+          requestAnimationFrame(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          });
+        }
+        return true;
+      }
+      // On load, keep all hidden until stepped through
+      window.addEventListener('message', (event) => {
+        const data = event && event.data;
+        if (!data || typeof data !== 'object') return;
+        if (data.type === 'slide-step-next') {
+          const handled = revealNext();
+          try { window.parent.postMessage({ type: 'slide-step-result', reqId: data.reqId, handled }, '*'); } catch (e) {}
+        }
+      });
+      // Allow click to progress step when presenting directly
+      document.addEventListener('click', () => { revealNext(); });
+    })();
+  </script>
 
 
 

@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI at Work with APEX: Practical Value Without Fluff</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0A0A0A;
+      color: #F5F5F5;
+      overflow: hidden;
+    }
+    .slide-container {
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 6rem;
+      position: relative;
+    }
+    .slide-container.active { display: flex; }
+    .slide-header {
+      margin-bottom: 2.5rem;
+    }
+    .slide-title {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+    }
+    .slide-subtitle {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #A0A0A0;
+      margin-top: 1rem;
+    }
+    .slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+    .bullet-list li::before {
+      content: "▸";
+      color: #60A5FA;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .visual-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 1rem;
+    }
+    .visual-title {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #60A5FA;
+      margin-bottom: 1rem;
+    }
+    .diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 1.1rem;
+    }
+    .diagram-node {
+      padding: 1rem 2rem;
+      background: rgba(96, 165, 250, 0.1);
+      border: 2px solid #60A5FA;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .diagram-arrow {
+      font-size: 2rem;
+      color: #60A5FA;
+    }
+    .collapsible {
+      margin-top: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .collapsible-header {
+      background: rgba(96, 165, 250, 0.15);
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s;
+    }
+    .collapsible-header:hover { background: rgba(96, 165, 250, 0.25); }
+    .collapsible-header::before {
+      content: "▶";
+      transition: transform 0.2s;
+    }
+    .collapsible.open .collapsible-header::before {
+      transform: rotate(90deg);
+    }
+    .collapsible-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 1.5rem;
+    }
+    .collapsible.open .collapsible-content {
+      max-height: 1000px;
+      padding: 1.5rem;
+    }
+    .collapsible-content h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #60A5FA;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .collapsible-content p, .collapsible-content li {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #D0D0D0;
+    }
+    .collapsible-content ul {
+      list-style: disc;
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    th {
+      background: rgba(96, 165, 250, 0.2);
+      padding: 0.75rem;
+      text-align: left;
+      font-weight: 700;
+      border-bottom: 2px solid #60A5FA;
+    }
+    td {
+      padding: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #60A5FA;
+      margin-bottom: 0.75rem;
+    }
+    .card-content {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #D0D0D0;
+    }
+    .footer {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      font-size: 0.85rem;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .slide-number {
+      font-weight: 600;
+      color: #888;
+    }
+    .nav-hint {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 2rem;
+      font-size: 0.75rem;
+      color: #555;
+    }
+    .speaker-notes {
+      position: fixed;
+      bottom: -200px;
+      left: 0;
+      right: 0;
+      background: rgba(20, 20, 20, 0.98);
+      border-top: 2px solid #60A5FA;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #C0C0C0;
+      transition: bottom 0.3s ease;
+      z-index: 100;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .speaker-notes.visible {
+      bottom: 0;
+    }
+    .speaker-notes strong {
+      color: #60A5FA;
+    }
+    .split-screen {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .split-panel {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .split-panel h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .split-panel.bad { border-color: #EF4444; }
+    .split-panel.bad h3 { color: #EF4444; }
+    .split-panel.good { border-color: #10B981; }
+    .split-panel.good h3 { color: #10B981; }
+    .handout {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .handout h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #60A5FA;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+    }
+    .handout p {
+      margin-bottom: 0.75rem;
+    }
+    .emphasis {
+      color: #60A5FA;
+      font-weight: 600;
+    }
+    .roadmap {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .roadmap-phase {
+      flex: 1;
+      background: rgba(96, 165, 250, 0.1);
+      border: 1px solid #60A5FA;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .roadmap-phase h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #60A5FA;
+      margin-bottom: 0.75rem;
+    }
+    .roadmap-phase ul {
+      list-style: disc;
+      margin-left: 1.2rem;
+      font-size: 0.95rem;
+    }
+    .controls {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 200;
+      display: flex;
+      gap: 0.75rem;
+    }
+    .control-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: none;
+      cursor: pointer;
+    }
+    .control-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+    .title-slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .title-slide .main-title {
+      font-size: 4.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #FFFFFF 0%, #60A5FA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .title-slide .subtitle {
+      font-size: 2rem;
+      font-weight: 300;
+      color: #A0A0A0;
+      margin-bottom: 3rem;
+    }
+    .title-slide .start-hint {
+      font-size: 1.1rem;
+      color: #60A5FA;
+      margin-top: 3rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Controls: Back and Fullscreen -->
+<div class="controls">
+  <a href="../index.html" class="control-btn" title="Back to dashboard">
+    <span>←</span>
+    <span>Dashboard</span>
+  </a>
+  <button id="fullscreenBtn" class="control-btn" title="Toggle fullscreen (F)">
+    <span id="fsIcon">⛶</span>
+    <span id="fsText">Fullscreen</span>
+  </button>
+</div>
+
+<!-- Slide 0: Title Slide -->
+<div class="slide-container active" data-slide="0">
+  <div class="slide-content title-slide">
+    <h1 class="main-title">AI at Work with APEX</h1>
+    <p class="subtitle">Practical Value Without Fluff</p>
+    <div class="visual-box" style="max-width: 600px;">
+      <div class="diagram">
+        <div class="diagram-node">Prompting</div>
+        <div class="diagram-node">Oversight</div>
+        <div class="diagram-node">Automation</div>
+      </div>
+    </div>
+    <p class="start-hint">Press → or click to begin</p>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">1</span>
+  </div>
+  <div class="speaker-notes" data-notes="0">
+    <strong>Speaker Notes:</strong> Welcome slide. Let it breathe for a moment. This sets the tone for a professional, no-nonsense session focused on practical outcomes.
+  </div>
+</div>
+
+<!-- Slide 1: Outcomes -->
+<div class="slide-container" data-slide="1">
+  <div class="slide-header">
+    <h1 class="slide-title">Session Outcomes</h1>
+  </div>
+  <div class="slide-content">
+    <ul class="bullet-list">
+      <li>Understand core AI capabilities</li>
+      <li>Use safely — EU-aware</li>
+      <li>Spot and avoid risks</li>
+      <li>Build useful automations in APEX</li>
+      <li>Measure ROI systematically</li>
+    </ul>
+    <div class="visual-box">
+      <div class="visual-title">Three Pillars</div>
+      <div class="diagram">
+        <div class="diagram-node">Prompting</div>
+        <div class="diagram-node">Oversight</div>
+        <div class="diagram-node">Automation</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">2</span>
+  </div>
+  <div class="speaker-notes" data-notes="1">
+    <strong>Speaker Notes:</strong> Set expectations clearly. This session is hands-on and APEX-centered. We'll build real automations, not theory. Emphasize the three pillars: smart prompting, rigorous oversight, and repeatable automation.
+  </div>
+</div>
+
+<!-- Slide 2: AI Basics -->
+<div class="slide-container" data-slide="2">
+  <div class="slide-header">
+    <h1 class="slide-title">AI Basics</h1>
+    <p class="slide-subtitle">Mental model, not math</p>
+  </div>
+  <div class="slide-content">
+    <ul class="bullet-list">
+      <li>What it is: pattern predictor</li>
+      <li>How it behaves: instructions + context + examples → output</li>
+      <li>Strong at: draft, summarize, extract, plan</li>
+      <li>Weak at: ambiguous specs, novel facts, long math</li>
+    </ul>
+    <div class="visual-box">
+      <div class="visual-title">Core Loop</div>
+      <div class="diagram">
+        <div class="diagram-node">Input</div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node">Model</div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node">Output</div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node">Oversight</div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node">Deploy</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">3</span>
+  </div>
+  <div class="speaker-notes" data-notes="2">
+    <strong>Speaker Notes:</strong> Treat AI as a smart intern: fast, capable, but needs clear briefs. It doesn't "understand" — it predicts the next token. This is why instructions and context matter enormously.
+  </div>
+</div>
+
+<!-- Slide 3: Meaning & Potential -->
+<div class="slide-container" data-slide="3">
+  <div class="slide-header">
+    <h1 class="slide-title">Meaning & Potential</h1>
+    <p class="slide-subtitle">Business value</p>
+  </div>
+  <div class="slide-content">
+    <ul class="bullet-list">
+      <li>Time saved across repetitive tasks</li>
+      <li>Quality lift through consistency</li>
+      <li>Risk reduction via automated checks</li>
+      <li>Shows up: email, docs, sheets, CRM, analytics, ops</li>
+    </ul>
+    <div class="visual-box">
+      <div class="visual-title">Impact Formula</div>
+      <div class="diagram">
+        <div style="font-size: 1.2rem; text-align: center;">
+          Impact = (Frequency × Minutes Saved) + Quality Uplift − Review Cost
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">4</span>
+  </div>
+  <div class="speaker-notes" data-notes="3">
+    <strong>Speaker Notes:</strong> Tie this to real teams and their KPIs. For example, support teams measure time-to-first-response; ops teams measure prep time for weekly reports. Make the business case tangible.
+  </div>
+</div>
+
+<!-- Slide 4: Functionality -->
+<div class="slide-container" data-slide="4">
+  <div class="slide-header">
+    <h1 class="slide-title">Functionality</h1>
+    <p class="slide-subtitle">What we can do today</p>
+  </div>
+  <div class="slide-content">
+    <ul class="bullet-list">
+      <li>Extract structured data from text</li>
+      <li>Summarize • Rewrite/Tone • Critique</li>
+      <li>Plan workflows • Classify documents</li>
+      <li>Structure to JSON/Tables</li>
+      <li>Image→Text • Chart explanations</li>
+    </ul>
+    <div class="visual-box">
+      <div class="visual-title">Micro Example</div>
+      <p style="font-size: 1rem; line-height: 1.6;">
+        <span class="emphasis">Input:</span> "Customer John Doe called about invoice #4821, says it's wrong. Urgent."<br>
+        <span class="emphasis">Output (JSON):</span> <code style="background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 4px;">{"customer": "John Doe", "issue": "invoice error", "invoice_id": "4821", "severity": "urgent"}</code>
+      </p>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">5</span>
+  </div>
+  <div class="speaker-notes" data-notes="4">
+    <strong>Speaker Notes:</strong> Keep examples concrete and relatable. The JSON extraction example resonates with anyone handling support tickets or customer inquiries.
+  </div>
+</div>
+
+<!-- Slide 5: Safety & EU Regs -->
+<div class="slide-container" data-slide="5">
+  <div class="slide-header">
+    <h1 class="slide-title">Safety & EU Regs</h1>
+    <p class="slide-subtitle">Business-user view</p>
+  </div>
+  <div class="slide-content">
+    <ul class="bullet-list">
+      <li>Data classes: Public / Internal / Confidential / Restricted</li>
+      <li>Safe prompting: redact, cite sources, log decisions</li>
+      <li>Governance: intake → risk tier → approval → monitor → review</li>
+      <li><span class="emphasis">No source? No ship.</span></li>
+    </ul>
+    <div class="visual-box">
+      <div class="visual-title">EU-Leaning Compliance Swimlane</div>
+      <div class="diagram" style="flex-direction: column; gap: 0.5rem; align-items: stretch;">
+        <div style="display: flex; gap: 1rem;">
+          <div class="diagram-node" style="flex: 1;">Intake Request</div>
+          <span class="diagram-arrow">→</span>
+          <div class="diagram-node" style="flex: 1;">Risk Assessment</div>
+          <span class="diagram-arrow">→</span>
+          <div class="diagram-node" style="flex: 1;">Approval Gate</div>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <div class="diagram-node" style="flex: 1;">Deploy with Monitoring</div>
+          <span class="diagram-arrow">→</span>
+          <div class="diagram-node" style="flex: 1;">Periodic Review</div>
+          <span class="diagram-arrow">→</span>
+          <div class="diagram-node" style="flex: 1;">Update or Retire</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">6</span>
+  </div>
+  <div class="speaker-notes" data-notes="5">
+    <strong>Speaker Notes:</strong> Practical, not legalese. Emphasize "No source? No ship" as a cultural norm. EU regulations favor transparency, human oversight, and documented decision-making — all achievable with good process.
+  </div>
+</div>
+
+<!-- Slide 6: Data Consumption -->
+<div class="slide-container" data-slide="6">
+  <div class="slide-header">
+    <h1 class="slide-title">Data Consumption</h1>
+    <p class="slide-subtitle">How tools use your data</p>
+  </div>
+  <div class="slide-content">
+    <ul class="bullet-list">
+      <li>Context scopes: session / project / workspace</li>
+      <li>Retention depends on workspace settings</li>
+      <li>Controls: training opt-out, data residency, access, audit logs</li>
+      <li>Pattern: bring data to APEX with least privilege</li>
+    </ul>
+    <div class="visual-box">
+      <div class="visual-title">Vendor Controls Table</div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Control</th>
+              <th>APEX</th>
+              <th>Generic Tool</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Training opt-out</td>
+              <td>✓ Default off</td>
+              <td>Manual config</td>
+            </tr>
+            <tr>
+              <td>Data residency</td>
+              <td>✓ EU available</td>
+              <td>Varies</td>
+            </tr>
+            <tr>
+              <td>Audit logs</td>
+              <td>✓ Built-in</td>
+              <td>Enterprise tier</td>
+            </tr>
+            <tr>
+              <td>Access controls</td>
+              <td>✓ Role-based</td>
+              <td>Basic</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">7</span>
+  </div>
+  <div class="speaker-notes" data-notes="6">
+    <strong>Speaker Notes:</strong> Summarize documents rather than pasting entire contents. Use connectors to bring data in with least privilege. APEX provides better defaults than generic tools.
+  </div>
+</div>
+
+<!-- Slide 7: Hallucinations, Fakes & Deepfakes -->
+<div class="slide-container" data-slide="7">
+  <div class="slide-header">
+    <h1 class="slide-title">Hallucinations, Fakes & Deepfakes</h1>
+  </div>
+  <div class="slide-content">
+    <ul class="bullet-list">
+      <li>Hallucination = confident wrongness without evidence</li>
+      <li>Deepfakes across text, image, audio, video</li>
+      <li>Mitigations: ask for sources, allow "I don't know"</li>
+      <li>Human approval gates, watermark checks where available</li>
+    </ul>
+    <div class="visual-box">
+      <div class="visual-title">Risk → Mitigation Matrix</div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Risk</th>
+              <th>Mitigation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Made-up facts</td>
+              <td>Require citation with prompt; "No source? No ship"</td>
+            </tr>
+            <tr>
+              <td>Wrong numbers</td>
+              <td>Manual spot-check; reconcile totals</td>
+            </tr>
+            <tr>
+              <td>Deepfake text</td>
+              <td>Review tone, verify against known style, require approval</td>
+            </tr>
+            <tr>
+              <td>Deepfake media</td>
+              <td>Watermark detection, metadata checks, human review</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">8</span>
+  </div>
+  <div class="speaker-notes" data-notes="7">
+    <strong>Speaker Notes:</strong> "No source? No ship" is the micro-checklist. Encourage the model to say "I don't know" when uncertain. Build approval gates into every high-stakes workflow.
+  </div>
+</div>
+
+<!-- Slide 8: Biases -->
+<div class="slide-container" data-slide="8">
+  <div class="slide-header">
+    <h1 class="slide-title">Biases</h1>
+    <p class="slide-subtitle">Where & how to handle</p>
+  </div>
+  <div class="slide-content">
+    <ul class="bullet-list">
+      <li>Sources: training data, prompts, examples, acceptance criteria</li>
+      <li>Controls: neutral phrasing, balanced few-shots, bias checks in QA rubric</li>
+      <li>Record: prompt version, rubric score, decision rationale</li>
+    </ul>
+    <div class="visual-box">
+      <div class="visual-title">Bias Check Mini-Rubric</div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Criterion</th>
+              <th>Pass</th>
+              <th>Fail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Language neutrality</td>
+              <td>No gender/cultural assumptions</td>
+              <td>Assumes defaults</td>
+            </tr>
+            <tr>
+              <td>Balanced examples</td>
+              <td>Diverse few-shots</td>
+              <td>Homogeneous samples</td>
+            </tr>
+            <tr>
+              <td>Acceptance criteria</td>
+              <td>Objective, measurable</td>
+              <td>Subjective preferences</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">9</span>
+  </div>
+  <div class="speaker-notes" data-notes="8">
+    <strong>Speaker Notes:</strong> Bias isn't just a model problem — it's in prompts, examples, and evaluation criteria. Record prompt versions and rubric scores to track improvements over time.
+  </div>
+</div>
+
+<!-- Slide 9: Human Oversight -->
+<div class="slide-container" data-slide="9">
+  <div class="slide-header">
+    <h1 class="slide-title">Human Oversight</h1>
+    <p class="slide-subtitle">The quality loop</p>
+  </div>
+  <div class="slide-content">
+    <ul class="bullet-list">
+      <li>Draft → Model self-check → Human review → Fix → Approve → Log</li>
+      <li>Rubric: correctness, coverage, cited evidence, tone, risk flags</li>
+      <li>Handoff: JSON/Table + summary + decision rationale</li>
+    </ul>
+    <div class="visual-box">
+      <div class="visual-title">Oversight Cycle</div>
+      <div class="diagram">
+        <div class="diagram-node">Draft</div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node">Self-Check</div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node">Human Review</div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node">Fix</div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node">Approve</div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node">Log</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">10</span>
+  </div>
+  <div class="speaker-notes" data-notes="9">
+    <strong>Speaker Notes:</strong> Keep an audit trail and save exemplars. The oversight cycle isn't bureaucracy — it's how you maintain quality and build institutional knowledge.
+  </div>
+</div>
+
+<!-- Slide 10: Prompting -->
+<div class="slide-container" data-slide="10">
+  <div class="slide-header">
+    <h1 class="slide-title">Prompting</h1>
+    <p class="slide-subtitle">The 5-part brief</p>
+  </div>
+  <div class="slide-content">
+    <ul class="bullet-list">
+      <li><span class="emphasis">Task:</span> what you need done</li>
+      <li><span class="emphasis">Context:</span> relevant data, audience, constraints</li>
+      <li><span class="emphasis">Constraints:</span> limits, rules, boundaries</li>
+      <li><span class="emphasis">Output spec:</span> format, structure, length</li>
+      <li><span class="emphasis">QA criteria:</span> how to verify correctness</li>
+    </ul>
+    <div class="visual-box">
+      <div class="visual-title">5-Part Template Card</div>
+      <div style="font-size: 0.95rem; line-height: 1.7;">
+        <strong>Task:</strong> [Action verb + object]<br>
+        <strong>Context:</strong> [Audience, data snippets, source links]<br>
+        <strong>Constraints:</strong> [Do/Don't, word limits, tone]<br>
+        <strong>Output:</strong> [JSON schema / table headers / format]<br>
+        <strong>QA:</strong> [Checklist: correctness, citations, tone]
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">11</span>
+  </div>
+  <div class="speaker-notes" data-notes="10">
+    <strong>Speaker Notes:</strong> This structure is reusable across demos. Patterns include Extract, Summarize, Critique, Plan, Rewrite/Tone, Few-shot, and Chain-of-Thought lite. Use JSON/table headers for structured workflows.
+  </div>
+</div>
+
+<!-- Slide 11: Good vs. Bad -->
+<div class="slide-container" data-slide="11">
+  <div class="slide-header">
+    <h1 class="slide-title">Good vs. Bad</h1>
+    <p class="slide-subtitle">Side-by-side comparison</p>
+  </div>
+  <div class="slide-content">
+    <div class="split-screen">
+      <div class="split-panel bad">
+        <h3>❌ Bad</h3>
+        <p style="font-size: 1rem; line-height: 1.6;">
+          "Write a product launch email."
+        </p>
+      </div>
+      <div class="split-panel good">
+        <h3>✓ Good</h3>
+        <p style="font-size: 0.9rem; line-height: 1.6;">
+          <strong>Task:</strong> Draft product launch email for B2B audience<br>
+          <strong>Context:</strong> Product = ProjectX, ships March 15, key benefit = 40% time savings on compliance workflows, target = mid-market ops teams<br>
+          <strong>Constraints:</strong> ≤150 words, 3 bullets max, no hype language, professional tone<br>
+          <strong>Output:</strong> Subject line + body (plain text)<br>
+          <strong>QA:</strong> Must match ship date, benefit stat, CTA = "Book demo"
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">12</span>
+  </div>
+  <div class="speaker-notes" data-notes="11">
+    <strong>Speaker Notes:</strong> Ask the audience why the right version wins. The answer: specificity, verifiable constraints, and a clear QA checklist. This is the difference between guessing and engineering.
+  </div>
+</div>
+
+<!-- Slide 12: Demos — All in APEX -->
+<div class="slide-container" data-slide="12">
+  <div class="slide-header">
+    <h1 class="slide-title">Demos — All in APEX</h1>
+    <p class="slide-subtitle">Anchor the value</p>
+  </div>
+  <div class="slide-content" style="overflow-y: auto; max-height: 70vh;">
+    <ul class="bullet-list">
+      <li>Three live flows: triage, brief, policy Q&A</li>
+      <li>End-to-end in APEX with real data</li>
+    </ul>
+    
+    <!-- Demo A -->
+    <div class="collapsible">
+      <div class="collapsible-header" onclick="toggleCollapsible(this)">
+        Demo A: Complaint Triage → Structured Summary → Reply
+      </div>
+      <div class="collapsible-content">
+        <h4>Steps</h4>
+        <ul>
+          <li>Paste raw email thread into APEX input field</li>
+          <li>Extract JSON: <code>{"customer": "name", "issue": "description", "severity": "high/medium/low", "product": "name", "due_date": "YYYY-MM-DD", "evidence": "snippet"}</code></li>
+          <li>Critique via QA prompt: flag missing evidence or ambiguous severity</li>
+          <li>Rewrite empathetic customer reply (≤120 words) + internal ticket notes</li>
+          <li>Save JSON + notes to sheet/CRM via APEX connector</li>
+        </ul>
+        <h4>Success Criteria</h4>
+        <p>JSON fields all populated; reply ≤120 words; ticket notes include root-cause guess + next step</p>
+        <h4>Failure Handling</h4>
+        <p>If severity missing → request clarification stub; if evidence absent → add TODO tag</p>
+      </div>
+    </div>
+
+    <!-- Demo B -->
+    <div class="collapsible">
+      <div class="collapsible-header" onclick="toggleCollapsible(this)">
+        Demo B: Executive Brief from Messy CSV
+      </div>
+      <div class="collapsible-content">
+        <h4>Steps</h4>
+        <ul>
+          <li>Upload CSV export to APEX</li>
+          <li>Normalize headers/types; return clean table + anomaly list</li>
+          <li>Generate 120-word executive summary + 1 chart description</li>
+          <li>Store artifacts; preview chart; attach source note</li>
+        </ul>
+        <h4>Success Criteria</h4>
+        <p>Totals reconcile; anomalies labeled; risks mentioned first in summary</p>
+      </div>
+    </div>
+
+    <!-- Demo C -->
+    <div class="collapsible">
+      <div class="collapsible-header" onclick="toggleCollapsible(this)">
+        Demo C: Policy Q&A with Citations
+      </div>
+      <div class="collapsible-content">
+        <h4>Steps</h4>
+        <ul>
+          <li>Add 5 sanitized PDFs into an APEX "Knowledge" collection</li>
+          <li>Ask policy questions; require source snippets + page IDs in response</li>
+          <li>"No answer" route if confidence low or source unavailable</li>
+        </ul>
+        <h4>Success Criteria</h4>
+        <p>Answers always include citations or abstain safely. No hallucinated policy statements.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">13</span>
+  </div>
+  <div class="speaker-notes" data-notes="12">
+    <strong>Speaker Notes:</strong> Run these live. Prep sanitized data beforehand. Show the JSON extraction, the QA prompt in action, and the citation mechanism. This is where APEX's integration shines.
+  </div>
+</div>
+
+<!-- Slide 13: Automations — All in APEX -->
+<div class="slide-container" data-slide="13">
+  <div class="slide-header">
+    <h1 class="slide-title">Automations — All in APEX</h1>
+    <p class="slide-subtitle">Repeatable value</p>
+  </div>
+  <div class="slide-content" style="overflow-y: auto; max-height: 70vh;">
+    <ul class="bullet-list">
+      <li>Components: Trigger • Inputs • Steps • Outputs • Exceptions • Owner • Metrics</li>
+      <li>Reliability: retries, guardrails, HITL, audit log</li>
+    </ul>
+
+    <!-- Automation A -->
+    <div class="collapsible">
+      <div class="collapsible-header" onclick="toggleCollapsible(this)">
+        Automation A: Inbox Triage & Reply
+      </div>
+      <div class="collapsible-content">
+        <h4>Trigger</h4>
+        <p>New email arrives in support inbox</p>
+        <h4>Inputs</h4>
+        <p>Raw email + allowlist metadata (known products, SLA tiers)</p>
+        <h4>Steps</h4>
+        <ul>
+          <li>Classify issue type (billing, technical, feature request)</li>
+          <li>Extract JSON (customer, issue, severity, product)</li>
+          <li>Draft reply using tone template</li>
+          <li>Human approval gate (Slack notification or APEX UI)</li>
+          <li>Send approved reply + log transaction</li>
+        </ul>
+        <h4>Outputs</h4>
+        <p>Reply email, ticket notes, run log</p>
+        <h4>Exceptions</h4>
+        <p>Unknown product → route to queue; no SLA match → escalate to manager</p>
+        <h4>Metrics</h4>
+        <p>Time-to-first-response, first-contact resolution rate, approval rate</p>
+      </div>
+    </div>
+
+    <!-- Automation B -->
+    <div class="collapsible">
+      <div class="collapsible-header" onclick="toggleCollapsible(this)">
+        Automation B: Weekly Ops Report
+      </div>
+      <div class="collapsible-content">
+        <h4>Trigger</h4>
+        <p>Every Friday 16:00</p>
+        <h4>Inputs</h4>
+        <p>CSV exports from ops tools (issues, deployments, incidents)</p>
+        <h4>Steps</h4>
+        <ul>
+          <li>Clean and merge CSVs</li>
+          <li>Compute KPIs (mean time to resolve, deployment frequency, incident count)</li>
+          <li>Detect anomalies (threshold: >2 std dev)</li>
+          <li>Produce 120-word summary + anomaly list + chart description</li>
+          <li>Deliver to Slack channel and email distribution list</li>
+        </ul>
+        <h4>Outputs</h4>
+        <p>KPI table, anomaly list, summary, chart preview</p>
+        <h4>Metrics</h4>
+        <p>Prep time saved (baseline: 90 min → 5 min), anomaly detection precision</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">14</span>
+  </div>
+  <div class="speaker-notes" data-notes="13">
+    <strong>Speaker Notes:</strong> Emphasize the SOP-to-Automation pipeline. These blueprints are production-ready. Highlight the human-in-the-loop approval gates and audit logs — that's what makes it trustworthy.
+  </div>
+</div>
+
+<!-- Slide 14: APEX vs. Competitors -->
+<div class="slide-container" data-slide="14">
+  <div class="slide-header">
+    <h1 class="slide-title">APEX vs. Competitors</h1>
+    <p class="slide-subtitle">Evaluation matrix</p>
+  </div>
+  <div class="slide-content">
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>APEX</th>
+            <th>Tool A</th>
+            <th>Tool B</th>
+            <th>Tool C</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>No-code demos + automations</td>
+            <td>✓ One surface</td>
+            <td>Separate tools</td>
+            <td>Code required</td>
+            <td>Limited</td>
+          </tr>
+          <tr>
+            <td>Governance (approval, audit log)</td>
+            <td>✓ Built-in</td>
+            <td>Manual</td>
+            <td>Enterprise tier</td>
+            <td>Basic</td>
+          </tr>
+          <tr>
+            <td>Data handling (redaction, scoping)</td>
+            <td>✓ Helpers + project scope</td>
+            <td>DIY</td>
+            <td>Basic</td>
+            <td>DIY</td>
+          </tr>
+          <tr>
+            <td>Prompt libraries & versioning</td>
+            <td>✓ Native</td>
+            <td>Manual Git</td>
+            <td>Partial</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td>Connectors (docs/sheets/CRM)</td>
+            <td>✓ Pre-built</td>
+            <td>API only</td>
+            <td>Limited</td>
+            <td>API only</td>
+          </tr>
+          <tr>
+            <td>RAG/citations</td>
+            <td>✓ Native with page IDs</td>
+            <td>Add-on</td>
+            <td>Basic</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td>TCO for 50 seats (annual)</td>
+            <td>$15k</td>
+            <td>$25k</td>
+            <td>$30k</td>
+            <td>$20k</td>
+          </tr>
+          <tr>
+            <td>Time-to-first-automation</td>
+            <td>15 minutes</td>
+            <td>2 hours</td>
+            <td>4 hours</td>
+            <td>1 hour</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">15</span>
+  </div>
+  <div class="speaker-notes" data-notes="14">
+    <strong>Speaker Notes:</strong> Keep neutral tone; focus on client outcomes. APEX wins on integration, governance, and time-to-value. The TCO and time-to-automation metrics are differentiators.
+  </div>
+</div>
+
+<!-- Slide 15: Our Niche Automations -->
+<div class="slide-container" data-slide="15">
+  <div class="slide-header">
+    <h1 class="slide-title">Our Niche Automations</h1>
+    <p class="slide-subtitle">Differentiators</p>
+  </div>
+  <div class="slide-content">
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">CS Complaint → Resolution Loop</div>
+        <div class="card-content">
+          <strong>Trigger:</strong> Support email<br>
+          <strong>Inputs:</strong> Email thread, CRM context<br>
+          <strong>Outputs:</strong> Ticket + reply draft<br>
+          <strong>KPI:</strong> 60% reduction in time-to-first-response
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Exec Weekly Brief</div>
+        <div class="card-content">
+          <strong>Trigger:</strong> Friday 16:00<br>
+          <strong>Inputs:</strong> Ops CSVs<br>
+          <strong>Outputs:</strong> Summary + chart + anomalies<br>
+          <strong>KPI:</strong> 90 min → 5 min prep time
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Sales Call Prep (MEDDICC)</div>
+        <div class="card-content">
+          <strong>Trigger:</strong> Calendar event 24h before<br>
+          <strong>Inputs:</strong> CRM data, LinkedIn, past notes<br>
+          <strong>Outputs:</strong> MEDDICC brief + talk track<br>
+          <strong>KPI:</strong> 40% increase in discovery quality score
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Finance Close Helper</div>
+        <div class="card-content">
+          <strong>Trigger:</strong> Month-end<br>
+          <strong>Inputs:</strong> GL exports, reconciliation templates<br>
+          <strong>Outputs:</strong> Variance report + flag list<br>
+          <strong>KPI:</strong> 50% reduction in close cycle time
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">HR Policy Q&A with Citations</div>
+        <div class="card-content">
+          <strong>Trigger:</strong> Employee query via Slack<br>
+          <strong>Inputs:</strong> Policy PDFs<br>
+          <strong>Outputs:</strong> Answer + citations or "No answer"<br>
+          <strong>KPI:</strong> 70% deflection from HR inbox
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">16</span>
+  </div>
+  <div class="speaker-notes" data-notes="15">
+    <strong>Speaker Notes:</strong> These are the "bread and butter" use cases that resonate across industries. Each has measurable KPI impact. Emphasize repeatability and the ability to clone and customize in minutes.
+  </div>
+</div>
+
+<!-- Slide 16: Wrap Up & Next Steps -->
+<div class="slide-container" data-slide="16">
+  <div class="slide-header">
+    <h1 class="slide-title">Wrap Up & Next Steps</h1>
+  </div>
+  <div class="slide-content">
+    <ul class="bullet-list">
+      <li>Run the 3 APEX flows</li>
+      <li>Clone 2 automations to your workspace</li>
+      <li>Track metrics: time saved, quality lift</li>
+      <li>30-day plan: baseline → deploy → measure → exec readout</li>
+    </ul>
+    <div class="visual-box">
+      <div class="visual-title">30/60/90 Roadmap</div>
+      <div class="roadmap">
+        <div class="roadmap-phase">
+          <h4>Days 1-30</h4>
+          <ul>
+            <li>Baseline 5 tasks</li>
+            <li>Deploy 2 automations</li>
+            <li>Log all runs</li>
+            <li>Weekly check-ins</li>
+          </ul>
+        </div>
+        <div class="roadmap-phase">
+          <h4>Days 31-60</h4>
+          <ul>
+            <li>Measure time + quality</li>
+            <li>Tune prompts</li>
+            <li>Add 3 more automations</li>
+            <li>Train power users</li>
+          </ul>
+        </div>
+        <div class="roadmap-phase">
+          <h4>Days 61-90</h4>
+          <ul>
+            <li>Exec readout</li>
+            <li>Scale to 10+ automations</li>
+            <li>Build automation library</li>
+            <li>ROI dashboard</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">17</span>
+  </div>
+  <div class="speaker-notes" data-notes="16">
+    <strong>Speaker Notes:</strong> CTA: pick your first two automations; we co-build this week. Emphasize the 30/60/90 roadmap as a structured rollout plan with measurable milestones.
+  </div>
+</div>
+
+<!-- Handout 1: QA Rubric -->
+<div class="slide-container" data-slide="17">
+  <div class="slide-header">
+    <h1 class="slide-title">Handout: QA Rubric</h1>
+  </div>
+  <div class="slide-content handout" style="overflow-y: auto; max-height: 70vh;">
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Criterion</th>
+            <th>Pass</th>
+            <th>Fail</th>
+            <th>Guidance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Correctness</td>
+            <td>All facts verified</td>
+            <td>Unverified claims</td>
+            <td>Require citations or abstain</td>
+          </tr>
+          <tr>
+            <td>Coverage</td>
+            <td>All inputs addressed</td>
+            <td>Missing key points</td>
+            <td>Check against input checklist</td>
+          </tr>
+          <tr>
+            <td>Cited Evidence</td>
+            <td>Source + page/snippet</td>
+            <td>No source</td>
+            <td>"No source? No ship"</td>
+          </tr>
+          <tr>
+            <td>Tone</td>
+            <td>Matches spec</td>
+            <td>Off-brand or inappropriate</td>
+            <td>Use tone examples in prompt</td>
+          </tr>
+          <tr>
+            <td>Risk Flags</td>
+            <td>Flagged and reviewed</td>
+            <td>Missed risks</td>
+            <td>Check bias rubric, PII scan</td>
+          </tr>
+          <tr>
+            <td>Format</td>
+            <td>Matches output spec</td>
+            <td>Wrong structure</td>
+            <td>Use JSON schema or table headers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Thresholds</h3>
+    <p><strong>Approve:</strong> All Pass<br><strong>Revise:</strong> 1 Fail (non-critical)<br><strong>Reject:</strong> ≥2 Fails or 1 critical Fail (Correctness, Cited Evidence, Risk Flags)</p>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">18</span>
+  </div>
+  <div class="speaker-notes" data-notes="17">
+    <strong>Speaker Notes:</strong> Print this for every review session. Use it to train new team members. The rubric is your quality anchor.
+  </div>
+</div>
+
+<!-- Handout 2: Defect Log -->
+<div class="slide-container" data-slide="18">
+  <div class="slide-header">
+    <h1 class="slide-title">Handout: Defect Log</h1>
+  </div>
+  <div class="slide-content handout" style="overflow-y: auto; max-height: 70vh;">
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Prompt Version</th>
+            <th>Error Type</th>
+            <th>Description</th>
+            <th>Fix</th>
+            <th>Owner</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025-01-15</td>
+            <td>v1.2</td>
+            <td>Hallucination</td>
+            <td>Made-up invoice number</td>
+            <td>Add "cite source or abstain" instruction</td>
+            <td>Alice</td>
+            <td>Fixed in v1.3</td>
+          </tr>
+          <tr>
+            <td>2025-01-18</td>
+            <td>v1.3</td>
+            <td>Tone</td>
+            <td>Reply too formal for audience</td>
+            <td>Add tone examples in prompt</td>
+            <td>Bob</td>
+            <td>Fixed in v1.4</td>
+          </tr>
+          <tr>
+            <td>2025-01-20</td>
+            <td>v1.4</td>
+            <td>Format</td>
+            <td>JSON missing "due_date" field</td>
+            <td>Update schema, add validation</td>
+            <td>Carol</td>
+            <td>In progress</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Usage</h3>
+    <p>Log every defect, even minor ones. Track prompt version so you can correlate fixes with outcomes. Use this log to identify patterns (e.g., "tone issues cluster around customer replies").</p>
+    <h3>Review Cadence</h3>
+    <p>Weekly for new automations; monthly for stable ones. Discuss trends in team retrospectives.</p>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">19</span>
+  </div>
+  <div class="speaker-notes" data-notes="18">
+    <strong>Speaker Notes:</strong> The defect log is your feedback loop. It's how you improve prompts systematically rather than guessing. Treat it like a product bug tracker.
+  </div>
+</div>
+
+<!-- Handout 3: Use-Case Intake Form -->
+<div class="slide-container" data-slide="19">
+  <div class="slide-header">
+    <h1 class="slide-title">Handout: Use-Case Intake Form</h1>
+  </div>
+  <div class="slide-content handout" style="overflow-y: auto; max-height: 70vh;">
+    <h3>Purpose</h3>
+    <p><strong>What problem does this solve?</strong> [1-2 sentences]<br><strong>Who benefits?</strong> [Team/role]<br><strong>Success metric:</strong> [Time saved / quality lift / error reduction]</p>
+    
+    <h3>Data</h3>
+    <p><strong>Input sources:</strong> [Email / CSV / PDF / CRM / etc.]<br><strong>Data classification:</strong> [Public / Internal / Confidential / Restricted]<br><strong>Redaction needed?</strong> [Yes/No] If yes, list fields: _______</p>
+    
+    <h3>Risk Tier</h3>
+    <p><strong>Low:</strong> Internal drafts, no PII, human reviews all outputs<br><strong>Medium:</strong> Customer-facing, contains PII, approval gate before send<br><strong>High:</strong> Financial/legal, external compliance impact, multi-level approval</p>
+    
+    <h3>Owner & Review</h3>
+    <p><strong>Owner:</strong> _________ (responsible for prompt tuning, monitoring)<br><strong>Approver:</strong> _________ (signs off before go-live)<br><strong>Review cadence:</strong> [Weekly / Monthly / Quarterly]</p>
+    
+    <h3>Approval</h3>
+    <p>☐ Business owner sign-off<br>☐ Data owner sign-off<br>☐ Compliance review (if Risk Tier = High)<br>☐ Go-live date: _________</p>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">20</span>
+  </div>
+  <div class="speaker-notes" data-notes="19">
+    <strong>Speaker Notes:</strong> Use this form for every new automation. It forces clarity on purpose, data, risk, and ownership. No intake form, no go-live.
+  </div>
+</div>
+
+<!-- Handout 4: APEX Build Sheet -->
+<div class="slide-container" data-slide="20">
+  <div class="slide-header">
+    <h1 class="slide-title">Handout: APEX Build Sheet</h1>
+  </div>
+  <div class="slide-content handout" style="overflow-y: auto; max-height: 70vh;">
+    <h3>Automation Name</h3>
+    <p>_______________________________</p>
+    
+    <h3>Schemas</h3>
+    <p><strong>Input JSON:</strong> [Paste schema or describe fields]<br><strong>Output JSON:</strong> [Paste schema or describe fields]</p>
+    
+    <h3>Prompts</h3>
+    <p><strong>Main prompt (v___):</strong><br>[Paste full 5-part prompt]</p>
+    <p><strong>QA prompt (v___):</strong><br>[Paste critique/validation prompt]</p>
+    
+    <h3>Connectors</h3>
+    <p><strong>Input connectors:</strong> [Email / Sheet / CRM / etc.]<br><strong>Output connectors:</strong> [Email / Slack / Sheet / etc.]<br><strong>Credentials:</strong> [Service account / OAuth / API key]</p>
+    
+    <h3>Approvals</h3>
+    <p><strong>HITL gate?</strong> [Yes/No]<br><strong>Approver:</strong> _________<br><strong>Approval method:</strong> [APEX UI / Slack button / Email link]</p>
+    
+    <h3>Metrics</h3>
+    <p><strong>Baseline:</strong> [Time / error rate before automation]<br><strong>Target:</strong> [Goal post-automation]<br><strong>Dashboard link:</strong> _______________________</p>
+    
+    <h3>Runbook Link</h3>
+    <p>_______________________________</p>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">21</span>
+  </div>
+  <div class="speaker-notes" data-notes="20">
+    <strong>Speaker Notes:</strong> The build sheet is your technical spec. Keep it updated as prompts evolve. Link to the runbook for step-by-step execution instructions.
+  </div>
+</div>
+
+<!-- Handout 5: Policy One-Pager -->
+<div class="slide-container" data-slide="21">
+  <div class="slide-header">
+    <h1 class="slide-title">Handout: Policy One-Pager</h1>
+  </div>
+  <div class="slide-content handout" style="overflow-y: auto; max-height: 70vh;">
+    <h3>Do</h3>
+    <ul class="bullet-list" style="font-size: 1rem;">
+      <li>Use approved APEX workspace only</li>
+      <li>Redact PII before pasting (names, emails, IDs)</li>
+      <li>Require citations for all factual claims</li>
+      <li>Log all high-stakes decisions (approval, rejection, escalation)</li>
+      <li>Review outputs before sending externally</li>
+    </ul>
+    
+    <h3>Don't</h3>
+    <ul class="bullet-list" style="font-size: 1rem;">
+      <li>Paste customer data into unapproved tools</li>
+      <li>Skip human review for customer-facing outputs</li>
+      <li>Ship outputs without source verification</li>
+      <li>Use AI for final financial/legal decisions without expert review</li>
+    </ul>
+    
+    <h3>Incident Steps</h3>
+    <p><strong>If you suspect a data leak or wrong output was sent:</strong></p>
+    <ol style="font-size: 1rem; margin-left: 1.5rem; line-height: 1.8;">
+      <li>Stop the automation immediately</li>
+      <li>Notify your manager and security@company.com</li>
+      <li>Document: what was sent, to whom, when, what data was included</li>
+      <li>Follow incident response playbook (link: __________)</li>
+    </ol>
+    
+    <h3>Contacts</h3>
+    <p><strong>AI Governance Lead:</strong> _________<br><strong>Data Privacy Officer:</strong> _________<br><strong>Security Incidents:</strong> security@company.com</p>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">22</span>
+  </div>
+  <div class="speaker-notes" data-notes="21">
+    <strong>Speaker Notes:</strong> Print this and post it near workstations or in the team wiki. It's the "cheat sheet" for safe, compliant AI use. Incident steps are critical — practice them in drills.
+  </div>
+</div>
+
+<!-- How to Present -->
+<div class="slide-container" data-slide="22">
+  <div class="slide-header">
+    <h1 class="slide-title">How to Present</h1>
+    <p class="slide-subtitle">Checklist & timings</p>
+  </div>
+  <div class="slide-content handout" style="overflow-y: auto; max-height: 70vh;">
+    <h3>Section Timings (60-min session)</h3>
+    <ul style="font-size: 1rem; line-height: 1.8; margin-left: 1.5rem;">
+      <li><strong>Title & Outcomes (2 min):</strong> Set stage, manage expectations</li>
+      <li><strong>AI Basics through Prompting (15 min):</strong> Foundation concepts, keep brisk</li>
+      <li><strong>Good vs. Bad (3 min):</strong> Interactive — ask audience why the good prompt wins</li>
+      <li><strong>Demos (20 min):</strong> Run all 3 live; prep data beforehand; show JSON, QA, citations</li>
+      <li><strong>Automations (10 min):</strong> Walk through blueprints; emphasize HITL and metrics</li>
+      <li><strong>APEX vs. Competitors (3 min):</strong> Neutral tone, focus on outcomes</li>
+      <li><strong>Wrap Up (5 min):</strong> CTA, 30/60/90 roadmap, Q&A preview</li>
+      <li><strong>Handouts (2 min):</strong> Point to appendix, offer printable PDFs</li>
+    </ul>
+    
+    <h3>Demo Prep</h3>
+    <ul style="font-size: 1rem; line-height: 1.8; margin-left: 1.5rem;">
+      <li>Sanitize all data (no real PII)</li>
+      <li>Pre-load PDFs into APEX Knowledge collection</li>
+      <li>Test each demo end-to-end 1 hour before session</li>
+      <li>Have screenshots as fallback if live demo fails</li>
+    </ul>
+    
+    <h3>Fallback Plan</h3>
+    <ul style="font-size: 1rem; line-height: 1.8; margin-left: 1.5rem;">
+      <li>If APEX is down: use recorded demo video (prepare 3 min clips)</li>
+      <li>If audience is skeptical: lean into the QA rubric and defect log — show the rigor</li>
+      <li>If running short on time: skip handouts walkthrough, send PDFs after</li>
+      <li>If running long: compress "Biases" and "Data Consumption" into 1 combined slide</li>
+    </ul>
+    
+    <h3>Post-Session</h3>
+    <ul style="font-size: 1rem; line-height: 1.8; margin-left: 1.5rem;">
+      <li>Send slide deck + handouts within 24 hours</li>
+      <li>Offer 1:1 co-build sessions for first 2 automations</li>
+      <li>Schedule 30-day check-in to review metrics</li>
+    </ul>
+  </div>
+  <div class="footer">
+    <span>AI at Work with APEX — © 2025</span>
+    <span class="slide-number">23</span>
+  </div>
+  <div class="speaker-notes" data-notes="22">
+    <strong>Speaker Notes:</strong> This is your presenter's guide. Stick to timings but be flexible based on audience engagement. The demos are the heart of the session — don't rush them.
+  </div>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide-container');
+  const totalSlides = slides.length;
+  let notesVisible = false;
+
+  function showSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (n + totalSlides) % totalSlides;
+    slides[currentSlide].classList.add('active');
+  }
+
+  function nextSlide() { showSlide(currentSlide + 1); }
+  function prevSlide() { showSlide(currentSlide - 1); }
+
+  function toggleNotes() {
+    notesVisible = !notesVisible;
+    const allNotes = document.querySelectorAll('.speaker-notes');
+    allNotes.forEach(note => {
+      if (note.dataset.notes == currentSlide) {
+        note.classList.toggle('visible', notesVisible);
+      } else {
+        note.classList.remove('visible');
+      }
+    });
+  }
+
+  function toggleCollapsible(header) {
+    const collapsible = header.parentElement;
+    collapsible.classList.toggle('open');
+  }
+
+  // Fullscreen functions
+  function isFullscreen() {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement || 
+              document.mozFullScreenElement || document.msFullscreenElement);
+  }
+
+  function toggleFullscreen() {
+    if (isFullscreen()) {
+      if (document.exitFullscreen) document.exitFullscreen();
+      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+      else if (document.msExitFullscreen) document.msExitFullscreen();
+    } else {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) elem.requestFullscreen();
+      else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+      else if (elem.mozRequestFullScreen) elem.mozRequestFullScreen();
+      else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
+    }
+  }
+
+  function updateFullscreenButton() {
+    const fsBtn = document.getElementById('fullscreenBtn');
+    const fsIcon = document.getElementById('fsIcon');
+    const fsText = document.getElementById('fsText');
+    if (isFullscreen()) {
+      fsIcon.textContent = '⛶';
+      fsText.textContent = 'Exit';
+    } else {
+      fsIcon.textContent = '⛶';
+      fsText.textContent = 'Fullscreen';
+    }
+  }
+
+  // Fullscreen button click
+  document.getElementById('fullscreenBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleFullscreen();
+  });
+
+  // Listen for fullscreen changes
+  document.addEventListener('fullscreenchange', updateFullscreenButton);
+  document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+  document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+  document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      e.preventDefault();
+      nextSlide();
+      notesVisible = false;
+      toggleNotes();
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      prevSlide();
+      notesVisible = false;
+      toggleNotes();
+    } else if (e.key.toLowerCase() === 'n') {
+      e.preventDefault();
+      toggleNotes();
+    } else if (e.key.toLowerCase() === 'f') {
+      e.preventDefault();
+      toggleFullscreen();
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      showSlide(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      showSlide(totalSlides - 1);
+    }
+  });
+
+  // Click navigation
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.collapsible-header')) return;
+    if (e.target.closest('.speaker-notes')) return;
+    if (e.target.closest('.controls')) return;
+    if (e.clientX > window.innerWidth / 2) {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+  });
+</script>
+
+</body>
+</html>
+

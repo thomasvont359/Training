@@ -43,7 +43,7 @@ I finally got my order today, a week late, and the box was crushed. I needed thi
         <!-- Right column: Steps + Output spec -->
         <div class="pl-2">
           
-          <div class="mt-6">
+          <div class="mt-6" id="ideal-block" style="opacity:0; transform: translateY(8px); transition: opacity 220ms ease, transform 220ms ease;">
             <div class="flex items-start">
               <div class="pr-3 pt-1 text-green-400" style="color:#34D399">
                 <svg class="w-5 h-5 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color:#34D399">
@@ -72,6 +72,34 @@ I finally got my order today, a week late, and the box was crushed. I needed thi
     </div>
   </body>
   </html>
+  <script>
+    // Step-reveal handshake for deck: first Next reveals Ideal Prompt, second Next advances slide
+    (function() {
+      let revealed = false;
+      function reveal() {
+        if (revealed) return false;
+        revealed = true;
+        const el = document.getElementById('ideal-block');
+        if (el) {
+          requestAnimationFrame(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          });
+        }
+        return true;
+      }
+      window.addEventListener('message', (event) => {
+        const data = event && event.data;
+        if (!data || typeof data !== 'object') return;
+        if (data.type === 'slide-step-next') {
+          const handled = reveal();
+          try { window.parent.postMessage({ type: 'slide-step-result', reqId: data.reqId, handled }, '*'); } catch (e) {}
+        }
+      });
+      // If presenter taps within slide, also reveal
+      document.addEventListener('click', () => { reveal(); });
+    })();
+  </script>
 
 
 
